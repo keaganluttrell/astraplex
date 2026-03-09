@@ -39,7 +39,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 **Plans**: 3 plans
 
 Plans:
-- [ ] 01-01-PLAN.md -- Scaffold Phoenix/Ash project and establish integration test harness with Smokestack factories
+- [x] 01-01-PLAN.md -- Scaffold Phoenix/Ash project and establish integration test harness with Smokestack factories
 - [ ] 01-02-PLAN.md -- Set up E2E browser testing (PhoenixTestPlaywright) and DaisyUIComponents design system
 - [ ] 01-03-PLAN.md -- Configure static analysis (Credo/Dialyxir), git hooks, and create CLAUDE.md conventions
 
@@ -190,7 +190,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Engineering Quality | 0/3 | Planning complete | - |
+| 1. Engineering Quality | 1/3 | Executing | - |
 | 2. AI Tooling | 0/? | Not started | - |
 | 3. Foundation & Auth | 0/? | Not started | - |
 | 4. Channels | 0/? | Not started | - |
