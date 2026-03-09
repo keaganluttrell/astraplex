@@ -46,3 +46,6 @@ config :ash, :missed_notifications, :ignore
 
 # PhoenixTest configuration
 config :phoenix_test, otp_app: :astraplex
+
+# Enable Ecto SQL sandbox for E2E browser tests
+config :astraplex, :sql_sandbox, true

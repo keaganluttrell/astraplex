@@ -1,3 +1,5 @@
+{:ok, _} = PhoenixTest.Playwright.Supervisor.start_link()
+Application.put_env(:phoenix_test, :base_url, AstraplexWeb.Endpoint.url())
 ExUnit.start()
 ExUnit.configure(exclude: [:e2e])
 Ecto.Adapters.SQL.Sandbox.mode(Astraplex.Repo, :manual)
