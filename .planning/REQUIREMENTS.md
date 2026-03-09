@@ -150,13 +150,68 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| (populated during roadmap creation) | | |
+| QUAL-01 | Phase 1: Engineering Quality | Pending |
+| QUAL-02 | Phase 1: Engineering Quality | Pending |
+| QUAL-03 | Phase 1: Engineering Quality | Pending |
+| QUAL-04 | Phase 1: Engineering Quality | Pending |
+| QUAL-05 | Phase 1: Engineering Quality | Pending |
+| QUAL-06 | Phase 1: Engineering Quality | Pending |
+| QUAL-07 | Phase 1: Engineering Quality | Pending |
+| QUAL-08 | Phase 1: Engineering Quality | Pending |
+| AI-01 | Phase 2: AI Tooling | Pending |
+| AI-02 | Phase 2: AI Tooling | Pending |
+| FOUND-01 | Phase 3: Foundation & Auth | Pending |
+| FOUND-02 | Phase 3: Foundation & Auth | Pending |
+| FOUND-03 | Phase 3: Foundation & Auth | Pending |
+| FOUND-04 | Phase 3: Foundation & Auth | Pending |
+| FOUND-05 | Phase 3: Foundation & Auth | Pending |
+| FOUND-06 | Phase 3: Foundation & Auth | Pending |
+| CHAN-01 | Phase 4: Channels | Pending |
+| CHAN-02 | Phase 4: Channels | Pending |
+| CHAN-03 | Phase 4: Channels | Pending |
+| CHAN-04 | Phase 4: Channels | Pending |
+| CHAN-05 | Phase 4: Channels | Pending |
+| CHAN-06 | Phase 4: Channels | Pending |
+| DM-01 | Phase 5: Conversations | Pending |
+| DM-02 | Phase 5: Conversations | Pending |
+| DM-03 | Phase 5: Conversations | Pending |
+| GRP-01 | Phase 5: Conversations | Pending |
+| GRP-02 | Phase 5: Conversations | Pending |
+| GRP-03 | Phase 5: Conversations | Pending |
+| GRP-04 | Phase 5: Conversations | Pending |
+| MSG-01 | Phase 6: Messaging Core | Pending |
+| MSG-02 | Phase 6: Messaging Core | Pending |
+| MSG-03 | Phase 6: Messaging Core | Pending |
+| MSG-04 | Phase 6: Messaging Core | Pending |
+| MSG-05 | Phase 6: Messaging Core | Pending |
+| MSG-06 | Phase 6: Messaging Core | Pending |
+| MSG-07 | Phase 6: Messaging Core | Pending |
+| MSG-08 | Phase 6: Messaging Core | Pending |
+| MSG-09 | Phase 6: Messaging Core | Pending |
+| MSG-10 | Phase 6: Messaging Core | Pending |
+| PRES-01 | Phase 7: Presence & Indicators | Pending |
+| PRES-02 | Phase 7: Presence & Indicators | Pending |
+| PRES-03 | Phase 7: Presence & Indicators | Pending |
+| PRES-04 | Phase 7: Presence & Indicators | Pending |
+| PRES-05 | Phase 7: Presence & Indicators | Pending |
+| NOTF-01 | Phase 8: Notifications | Pending |
+| NOTF-02 | Phase 8: Notifications | Pending |
+| NOTF-03 | Phase 8: Notifications | Pending |
+| NOTF-04 | Phase 8: Notifications | Pending |
+| NOTF-05 | Phase 8: Notifications | Pending |
+| ADMN-01 | Phase 9: Administration | Pending |
+| ADMN-02 | Phase 9: Administration | Pending |
+| ADMN-03 | Phase 9: Administration | Pending |
+| ADMN-04 | Phase 9: Administration | Pending |
+| UI-01 | Phase 10: UI & PWA | Pending |
+| UI-03 | Phase 10: UI & PWA | Pending |
+| UI-04 | Phase 10: UI & PWA | Pending |
 
 **Coverage:**
-- v1 requirements: 43 total
-- Mapped to phases: 0
-- Unmapped: 43 ⚠️
+- v1 requirements: 56 total
+- Mapped to phases: 56
+- Unmapped: 0
 
 ---
 *Requirements defined: 2026-03-09*
-*Last updated: 2026-03-09 after scoping adjustments (file uploads and search deferred to v2, email stubbed, design system moved to QUAL)*
+*Last updated: 2026-03-09 -- traceability populated during roadmap creation*
