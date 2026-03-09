@@ -11,11 +11,11 @@ Requirements for initial release. Each maps to roadmap phases.
 
 - [x] **QUAL-01**: Integration test suite covering Ash actions, policies, and PubSub behavior
 - [x] **QUAL-02**: E2E test suite covering full user flows through LiveView (tool TBD by research)
-- [ ] **QUAL-03**: Static analysis and compile-time type checking (tools TBD by research)
-- [ ] **QUAL-04**: Git pre-commit hook (format check, compile, static analysis)
-- [ ] **QUAL-05**: Git pre-push hook (run test suite)
+- [x] **QUAL-03**: Static analysis and compile-time type checking (tools TBD by research)
+- [x] **QUAL-04**: Git pre-commit hook (format check, compile, static analysis)
+- [x] **QUAL-05**: Git pre-push hook (run test suite)
 - [x] **QUAL-06**: Test harness with standardized setup, factories, and helper modules
-- [ ] **QUAL-07**: AI usage rules (CLAUDE.md) encoding code conventions, architecture rules, commit conventions
+- [x] **QUAL-07**: AI usage rules (CLAUDE.md) encoding code conventions, architecture rules, commit conventions
 - [x] **QUAL-08**: Design system with consistent component library (selection TBD by research)
 
 ### AI Tooling
@@ -152,11 +152,11 @@ Which phases cover which requirements. Updated during roadmap creation.
 |-------------|-------|--------|
 | QUAL-01 | Phase 1: Engineering Quality | Complete |
 | QUAL-02 | Phase 1: Engineering Quality | Complete |
-| QUAL-03 | Phase 1: Engineering Quality | Pending |
-| QUAL-04 | Phase 1: Engineering Quality | Pending |
-| QUAL-05 | Phase 1: Engineering Quality | Pending |
+| QUAL-03 | Phase 1: Engineering Quality | Complete |
+| QUAL-04 | Phase 1: Engineering Quality | Complete |
+| QUAL-05 | Phase 1: Engineering Quality | Complete |
 | QUAL-06 | Phase 1: Engineering Quality | Complete |
-| QUAL-07 | Phase 1: Engineering Quality | Pending |
+| QUAL-07 | Phase 1: Engineering Quality | Complete |
 | QUAL-08 | Phase 1: Engineering Quality | Complete |
 | AI-01 | Phase 2: AI Tooling | Pending |
 | AI-02 | Phase 2: AI Tooling | Pending |
