@@ -84,8 +84,12 @@ defmodule AstraplexWeb do
 
       # HTML escaping functionality
       import Phoenix.HTML
-      # Core UI components
-      import AstraplexWeb.CoreComponents
+
+      # DaisyUI design system components (replaces default CoreComponents)
+      use DaisyUIComponents
+
+      # Utility functions from CoreComponents (translate_error, etc.)
+      import AstraplexWeb.CoreComponents, only: [translate_error: 1, translate_errors: 2]
 
       # Common modules used in templates
       alias AstraplexWeb.Layouts
