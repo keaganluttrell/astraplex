@@ -28,6 +28,9 @@ defmodule AstraplexWeb.ConnCase do
       import Plug.Conn
       import Phoenix.ConnTest
       import AstraplexWeb.ConnCase
+      import Astraplex.Factory
+
+      # Auth helpers will be added in Phase 3
     end
   end
 
