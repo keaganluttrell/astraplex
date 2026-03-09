@@ -36,12 +36,12 @@ Decimal phases appear between their surrounding integers in numeric order.
   4. Git pre-push hook rejects pushes when the test suite fails
   5. CLAUDE.md exists with code conventions, architecture rules, and commit conventions that Claude follows
   6. Design system components render consistently and are available for use in LiveView templates
-**Plans**: TBD
+**Plans**: 3 plans
 
 Plans:
-- [ ] 01-01: TBD
-- [ ] 01-02: TBD
-- [ ] 01-03: TBD
+- [ ] 01-01-PLAN.md -- Scaffold Phoenix/Ash project and establish integration test harness with Smokestack factories
+- [ ] 01-02-PLAN.md -- Set up E2E browser testing (PhoenixTestPlaywright) and DaisyUIComponents design system
+- [ ] 01-03-PLAN.md -- Configure static analysis (Credo/Dialyxir), git hooks, and create CLAUDE.md conventions
 
 ### Phase 2: AI Tooling
 **Goal**: AI agents can interact with Ash domains through an MCP server, and Ash AI powers at least one in-app AI feature
@@ -190,7 +190,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Engineering Quality | 0/? | Not started | - |
+| 1. Engineering Quality | 0/3 | Planning complete | - |
 | 2. AI Tooling | 0/? | Not started | - |
 | 3. Foundation & Auth | 0/? | Not started | - |
 | 4. Channels | 0/? | Not started | - |
