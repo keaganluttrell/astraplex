@@ -149,37 +149,6 @@ defmodule AstraplexWeb.Components.UI do
     """
   end
 
-  @doc """
-  Renders the Astraplex brand logo (planet icon) with optional size class.
-
-  Uses `currentColor` so it inherits the text color from its parent.
-
-  ## Examples
-
-      <.brand_icon />
-      <.brand_icon class="size-8" />
-  """
-  attr :class, :string, default: "size-6"
-
-  def brand_icon(assigns) do
-    ~H"""
-    <svg
-      class={@class}
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      stroke-width="1.5"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <circle cx="12" cy="12" r="9" />
-      <path d="M3.5,16 C5,15 8.5,12.5 13,10.5 C17.5,8.5 20,7.5 21,7" />
-      <ellipse cx="18.5" cy="5.5" rx="2.5" ry="1" transform="rotate(-30 18.5 5.5)" />
-    </svg>
-    """
-  end
-
   # Private helpers
 
   defp initials(email) do
