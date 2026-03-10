@@ -1,6 +1,8 @@
 defmodule Astraplex.System.Health do
   @moduledoc "Health check resource providing system status information."
 
+  @derive {Jason.Encoder, only: [:status, :version, :uptime_seconds, :node]}
+
   use Ash.Resource,
     domain: Astraplex.System,
     data_layer: :embedded,
