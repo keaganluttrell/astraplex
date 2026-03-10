@@ -88,6 +88,9 @@ defmodule AstraplexWeb do
       # DaisyUI design system components (replaces default CoreComponents)
       use DaisyUIComponents
 
+      # App-level shared UI components (avatar, page_header, empty_state, skeletons)
+      import AstraplexWeb.Components.UI
+
       # Utility functions from CoreComponents (translate_error, etc.)
       import AstraplexWeb.CoreComponents, only: [translate_error: 1, translate_errors: 2]
 
