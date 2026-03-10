@@ -220,16 +220,18 @@ defmodule AstraplexWeb.Admin.ChannelListLive do
     <%!-- Fixed-position drawer panel — renders outside layout overflow --%>
     <div
       id="channel-drawer-overlay"
+      style="z-index: 9999"
       class={[
-        "fixed inset-0 bg-black/30 z-[999] transition-opacity",
+        "fixed inset-0 bg-black/30 transition-opacity",
         if(@live_action in [:new, :show], do: "opacity-100", else: "opacity-0 pointer-events-none")
       ]}
       phx-click={JS.patch(~p"/admin/channels")}
     />
     <div
       id="channel-drawer"
+      style="z-index: 10000"
       class={[
-        "fixed top-0 right-0 h-full w-96 bg-base-100 shadow-xl z-[1000] border-l border-base-300 overflow-y-auto transition-transform duration-200",
+        "fixed top-0 right-0 h-full w-96 bg-base-100 shadow-xl border-l border-base-300 overflow-y-auto transition-transform duration-200",
         if(@live_action in [:new, :show], do: "translate-x-0", else: "translate-x-full")
       ]}
     >
