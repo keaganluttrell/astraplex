@@ -14,7 +14,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 - [x] **Phase 1: Engineering Quality** - Project scaffold, test harness, static analysis, git hooks, AI usage rules, and design system (completed 2026-03-10)
 - [ ] **Phase 2: AI Tooling** - MCP server exposing Ash domains as tools for Claude Code during development
-- [ ] **Phase 3: Foundation & Auth** - Admin-created user accounts, roles, authentication, and session management
+- [x] **Phase 3: Foundation & Auth** - Admin-created user accounts, roles, authentication, and session management (completed 2026-03-10)
 - [ ] **Phase 4: Channels** - Admin-managed invite-only channels with membership and message history
 - [ ] **Phase 5: Conversations** - User-initiated DMs (1:1) and ad-hoc group messages (2+)
 - [ ] **Phase 6: Messaging Core** - Text and rich text messages, mentions, reactions, threading, and real-time delivery
@@ -194,7 +194,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10
 |-------|----------------|--------|-----------|
 | 1. Engineering Quality | 3/3 | Complete    | 2026-03-10 |
 | 2. AI Tooling | 1/2 | In progress | - |
-| 3. Foundation & Auth | 2/3 | In Progress|  |
+| 3. Foundation & Auth | 3/3 | Complete   | 2026-03-10 |
 | 4. Channels | 0/? | Not started | - |
 | 5. Conversations | 0/? | Not started | - |
 | 6. Messaging Core | 0/? | Not started | - |
