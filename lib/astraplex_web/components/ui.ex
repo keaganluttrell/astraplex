@@ -78,7 +78,7 @@ defmodule AstraplexWeb.Components.UI do
       @show_indicator && ((@online && "avatar-online") || "avatar-offline")
     ]}>
       <div class={[
-        "rounded-full text-white",
+        "flex items-center justify-center rounded-full text-white",
         avatar_bg_color(@user.id),
         avatar_size(@size)
       ]}>
