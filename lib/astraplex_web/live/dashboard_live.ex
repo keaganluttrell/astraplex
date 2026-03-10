@@ -50,6 +50,11 @@ defmodule AstraplexWeb.DashboardLive do
   end
 
   @doc false
+  def handle_event("new_channel_sidebar", _params, socket) do
+    {:noreply, socket}
+  end
+
+  @doc false
   def handle_info(%{topic: "membership:changed:" <> _}, socket) do
     channels = load_sidebar_channels(socket.assigns.current_user)
     {:noreply, assign(socket, :channels, channels)}

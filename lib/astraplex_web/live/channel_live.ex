@@ -124,6 +124,10 @@ defmodule AstraplexWeb.ChannelLive do
   end
 
   @doc false
+  def handle_event("new_channel_sidebar", _params, socket) do
+    {:noreply, socket}
+  end
+
   def handle_event("send_message", %{"body" => body}, socket) do
     %{channel: channel, current_user: current_user} = socket.assigns
 
