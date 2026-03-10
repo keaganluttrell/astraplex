@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: completed
-stopped_at: Completed 04-03-PLAN.md
-last_updated: "2026-03-10T21:41:22.038Z"
+stopped_at: Completed 04-04-PLAN.md
+last_updated: "2026-03-10T22:08:12.144Z"
 last_activity: 2026-03-10 -- Completed Plan 04-03 (Channel Chat View and Sidebar Integration)
 progress:
   total_phases: 11
   completed_phases: 5
-  total_plans: 14
-  completed_plans: 14
+  total_plans: 15
+  completed_plans: 15
   percent: 100
 ---
 
@@ -26,9 +26,9 @@ See: .planning/PROJECT.md (updated 2026-03-09)
 ## Current Position
 
 Phase: 4 of 10 (Channels)
-Plan: 3 of 3 in current phase
+Plan: 4 of 4 in current phase
 Status: Phase 04 Complete
-Last activity: 2026-03-10 -- Completed Plan 04-03 (Channel Chat View and Sidebar Integration)
+Last activity: 2026-03-10 -- Completed Plan 04-04 (Gap Closure - Archived Channel Access)
 
 Progress: [██████████] 100%
 
@@ -56,6 +56,7 @@ Progress: [██████████] 100%
 | Phase 04 P01 | 6 min | 2 tasks | 17 files |
 | Phase 04 P02 | 5 min | 2 tasks | 4 files |
 | Phase 04 P03 | 22 min | 3 tasks | 11 files |
+| Phase 04 P04 | 5 min | 2 tasks | 5 files |
 
 ## Accumulated Context
 
@@ -114,6 +115,7 @@ Recent decisions affecting current work:
 - [Phase 04-03]: ClearInput JS hook to reset form after send (PubSub handles message display)
 - [Phase 04-03]: ScrollBottom JS hook to anchor chat messages to bottom with auto-scroll
 - [Phase 04-03]: Staff channel read policy broadened to actor_present for access resolution
+- [Phase 04]: list_for_user broadened to status in [:active, :archived] for archived channel sidebar access
 
 ### Roadmap Evolution
 
@@ -130,6 +132,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-10T21:30:00Z
-Stopped at: Completed 04-03-PLAN.md
+Last session: 2026-03-10T22:08:12.142Z
+Stopped at: Completed 04-04-PLAN.md
 Resume file: None
