@@ -33,6 +33,7 @@ defmodule AstraplexWeb.Router do
       layout: false,
       on_mount: [{AstraplexWeb.LiveAuth, :require_authenticated_user}] do
       live "/", DashboardLive, :index
+      live "/channels/:id", ChannelLive, :show
     end
   end
 
@@ -45,6 +46,8 @@ defmodule AstraplexWeb.Router do
       on_mount: [{AstraplexWeb.LiveAuth, :require_admin}] do
       live "/users", UserListLive, :index
       live "/users/new", UserListLive, :new
+      live "/channels", ChannelListLive, :index
+      live "/channels/:id", ChannelListLive, :show
     end
   end
 

@@ -1,10 +1,18 @@
 defmodule AstraplexWeb.DashboardLive do
-  @moduledoc "Post-login landing page. Placeholder for Phase 4+ channel views."
+  @moduledoc "Post-login landing page showing sidebar channels and welcome state."
 
   use AstraplexWeb, :live_view
 
+  @doc false
   def mount(_params, _session, socket) do
-    {:ok, socket}
+    current_user = socket.assigns.current_user
+    channels = load_sidebar_channels(current_user)
+
+    if connected?(socket) do
+      AstraplexWeb.Endpoint.subscribe("membership:changed:#{current_user.id}")
+    end
+
+    {:ok, assign(socket, :channels, channels)}
   end
 
   def render(assigns) do
@@ -14,6 +22,7 @@ defmodule AstraplexWeb.DashboardLive do
         flash={@flash}
         current_user={@current_user}
         active_page={:home}
+        channels={@channels}
         breadcrumb_path={[{"Home", nil}]}
       >
         <.empty_state
@@ -27,6 +36,7 @@ defmodule AstraplexWeb.DashboardLive do
         flash={@flash}
         current_user={@current_user}
         active_page={:home}
+        channels={@channels}
         breadcrumb_path={[{"Home", nil}]}
       >
         <.empty_state
@@ -37,5 +47,19 @@ defmodule AstraplexWeb.DashboardLive do
       </Layouts.staff_shell>
     <% end %>
     """
+  end
+
+  @doc false
+  def handle_info(%{topic: "membership:changed:" <> _}, socket) do
+    channels = load_sidebar_channels(socket.assigns.current_user)
+    {:noreply, assign(socket, :channels, channels)}
+  end
+
+  defp load_sidebar_channels(actor) do
+    Astraplex.Messaging.Channel
+    |> Ash.read!(action: :list_for_user, actor: actor)
+    |> Enum.map(fn c ->
+      %{id: to_string(c.id), label: "#" <> to_string(c.name), url: ~p"/channels/#{c.id}"}
+    end)
   end
 end
