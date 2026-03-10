@@ -26,6 +26,10 @@ defmodule AstraplexWeb.Admin.UserListLive do
     assign(socket, form: nil, page_title: "User Management", confirm_deactivate_user: nil)
   end
 
+  def handle_event("new_channel_sidebar", _params, socket) do
+    {:noreply, socket}
+  end
+
   def handle_event("validate", %{"user" => params}, socket) do
     form =
       socket.assigns.form.source
