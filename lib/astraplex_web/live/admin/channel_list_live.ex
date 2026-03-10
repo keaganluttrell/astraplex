@@ -221,7 +221,7 @@ defmodule AstraplexWeb.Admin.ChannelListLive do
     <div
       id="channel-drawer-overlay"
       class={[
-        "fixed inset-0 bg-black/30 z-40 transition-opacity",
+        "fixed inset-0 bg-black/30 z-[999] transition-opacity",
         if(@live_action in [:new, :show], do: "opacity-100", else: "opacity-0 pointer-events-none")
       ]}
       phx-click={JS.patch(~p"/admin/channels")}
@@ -229,7 +229,7 @@ defmodule AstraplexWeb.Admin.ChannelListLive do
     <div
       id="channel-drawer"
       class={[
-        "fixed top-0 right-0 h-full w-96 bg-base-100 shadow-xl z-50 border-l border-base-300 overflow-y-auto transition-transform duration-200",
+        "fixed top-0 right-0 h-full w-96 bg-base-100 shadow-xl z-[1000] border-l border-base-300 overflow-y-auto transition-transform duration-200",
         if(@live_action in [:new, :show], do: "translate-x-0", else: "translate-x-full")
       ]}
     >
