@@ -2,16 +2,16 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: completed
-stopped_at: Phase 3 context gathered
-last_updated: "2026-03-10T03:35:04.591Z"
-last_activity: 2026-03-10 -- Completed Plan 02-02 (Production MCP router)
+status: in_progress
+stopped_at: Completed 03-01-PLAN.md
+last_updated: "2026-03-10T04:01:30.000Z"
+last_activity: 2026-03-10 -- Completed Plan 03-01 (Accounts domain)
 progress:
   total_phases: 10
   completed_phases: 2
-  total_plans: 5
-  completed_plans: 5
-  percent: 20
+  total_plans: 6
+  completed_plans: 6
+  percent: 24
 ---
 
 # Project State
@@ -21,23 +21,23 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-09)
 
 **Core value:** Staff and admins can communicate in real time with messages that arrive instantly, scoped to conversations they are members of.
-**Current focus:** Phase 2: AI Tooling
+**Current focus:** Phase 3: Foundation & Auth
 
 ## Current Position
 
-Phase: 2 of 10 (AI Tooling) -- COMPLETE
-Plan: 2 of 2 in current phase
-Status: Phase Complete
-Last activity: 2026-03-10 -- Completed Plan 02-02 (Production MCP router)
+Phase: 3 of 10 (Foundation & Auth) -- IN PROGRESS
+Plan: 1 of 5 in current phase
+Status: Plan 03-01 Complete
+Last activity: 2026-03-10 -- Completed Plan 03-01 (Accounts domain)
 
-Progress: [██░░░░░░░░] 20%
+Progress: [██░░░░░░░░] 24%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 5
+- Total plans completed: 6
 - Average duration: 6 min
-- Total execution time: 0.48 hours
+- Total execution time: 0.58 hours
 
 **By Phase:**
 
@@ -45,9 +45,10 @@ Progress: [██░░░░░░░░] 20%
 |-------|-------|-------|----------|
 | 1. Engineering Quality | 3/3 | 10 min | 5 min |
 | 2. AI Tooling | 2/2 | 13 min | 7 min |
+| 3. Foundation & Auth | 1/5 | 6 min | 6 min |
 
 **Recent Trend:**
-- Last 5 plans: 01-01 (5 min), 01-02 (5 min), 01-03 (8 min), 02-01 (12 min), 02-02 (1 min)
+- Last 5 plans: 01-02 (5 min), 01-03 (8 min), 02-01 (12 min), 02-02 (1 min), 03-01 (6 min)
 - Trend: Consistent
 
 *Updated after each plan completion*
@@ -78,6 +79,9 @@ Recent decisions affecting current work:
 - [02-01]: Health resource uses embedded data layer with generic action -- no DB dependency
 - [02-01]: Protocol version 2024-11-05 for maximum MCP client compatibility
 - [Phase 02]: No auth on /mcp scope -- deferred to Phase 3 when users exist
+- [03-01]: Custom sign_in_with_password action with ValidateActiveStatus preparation to block deactivated users
+- [03-01]: require_token_presence_for_authentication? true for secure token revocation
+- [03-01]: Ash.Seed.seed! for test user creation (bypasses policies for prerequisite data)
 
 ### Pending Todos
 
@@ -90,6 +94,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-10T03:35:04.589Z
-Stopped at: Phase 3 context gathered
-Resume file: .planning/phases/03-foundation-auth/03-CONTEXT.md
+Last session: 2026-03-10T04:01:30.000Z
+Stopped at: Completed 03-01-PLAN.md
+Resume file: .planning/phases/03-foundation-auth/03-01-SUMMARY.md

@@ -25,9 +25,9 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Foundation
 
-- [ ] **FOUND-01**: Admin can create user accounts with email and password
-- [ ] **FOUND-02**: Admin can assign users the Admin or Staff role
-- [ ] **FOUND-03**: Admin can deactivate user accounts (soft delete, preserves message history)
+- [x] **FOUND-01**: Admin can create user accounts with email and password
+- [x] **FOUND-02**: Admin can assign users the Admin or Staff role
+- [x] **FOUND-03**: Admin can deactivate user accounts (soft delete, preserves message history)
 - [ ] **FOUND-04**: User can log in with email and password
 - [ ] **FOUND-05**: User session persists across browser refresh
 - [ ] **FOUND-06**: User can log out from any page
@@ -160,9 +160,9 @@ Which phases cover which requirements. Updated during roadmap creation.
 | QUAL-08 | Phase 1: Engineering Quality | Complete |
 | AI-01 | Phase 2: AI Tooling | Complete |
 | AI-02 | Phase 2: AI Tooling | Complete |
-| FOUND-01 | Phase 3: Foundation & Auth | Pending |
-| FOUND-02 | Phase 3: Foundation & Auth | Pending |
-| FOUND-03 | Phase 3: Foundation & Auth | Pending |
+| FOUND-01 | Phase 3: Foundation & Auth | Complete |
+| FOUND-02 | Phase 3: Foundation & Auth | Complete |
+| FOUND-03 | Phase 3: Foundation & Auth | Complete |
 | FOUND-04 | Phase 3: Foundation & Auth | Pending |
 | FOUND-05 | Phase 3: Foundation & Auth | Pending |
 | FOUND-06 | Phase 3: Foundation & Auth | Pending |
