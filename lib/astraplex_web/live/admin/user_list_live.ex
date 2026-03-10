@@ -6,7 +6,10 @@ defmodule AstraplexWeb.Admin.UserListLive do
   alias Astraplex.Accounts.User
 
   def mount(_params, _session, socket) do
-    {:ok, assign(socket, :users, load_users(socket))}
+    {:ok,
+     socket
+     |> assign(:users, load_users(socket))
+     |> assign(:channels, load_sidebar_channels(socket))}
   end
 
   def handle_params(_params, _uri, socket) do
@@ -24,10 +27,6 @@ defmodule AstraplexWeb.Admin.UserListLive do
 
   defp apply_action(socket, :index) do
     assign(socket, form: nil, page_title: "User Management", confirm_deactivate_user: nil)
-  end
-
-  def handle_event("new_channel_sidebar", _params, socket) do
-    {:noreply, socket}
   end
 
   def handle_event("validate", %{"user" => params}, socket) do
@@ -104,6 +103,7 @@ defmodule AstraplexWeb.Admin.UserListLive do
       flash={@flash}
       current_user={@current_user}
       active_page={:admin}
+      channels={@channels}
       breadcrumb_path={[{"Admin", ~p"/admin/users"}, {"Users", nil}]}
     >
       <div class="p-6">
@@ -203,6 +203,14 @@ defmodule AstraplexWeb.Admin.UserListLive do
       </div>
     </.modal>
     """
+  end
+
+  defp load_sidebar_channels(socket) do
+    Astraplex.Messaging.Channel
+    |> Ash.read!(action: :list_for_user, actor: socket.assigns.current_user)
+    |> Enum.map(fn c ->
+      %{id: to_string(c.id), label: "#" <> to_string(c.name), url: ~p"/channels/#{c.id}"}
+    end)
   end
 
   defp load_users(socket) do

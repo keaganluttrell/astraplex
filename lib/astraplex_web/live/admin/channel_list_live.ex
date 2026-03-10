@@ -70,10 +70,6 @@ defmodule AstraplexWeb.Admin.ChannelListLive do
 
   # -- Events: Channel CRUD --
 
-  def handle_event("new_channel_sidebar", _params, socket) do
-    {:noreply, socket}
-  end
-
   def handle_event("validate_channel", %{"channel" => params}, socket) do
     form =
       socket.assigns.channel_form.source
