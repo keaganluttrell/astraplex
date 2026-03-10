@@ -20,10 +20,12 @@ defmodule AstraplexWeb.Router do
     get "/", PageController, :home
   end
 
-  # Other scopes may use custom stacks.
-  # scope "/api", AstraplexWeb do
-  #   pipe_through :api
-  # end
+  scope "/mcp" do
+    forward "/", AshAi.Mcp.Router,
+      tools: [:check_health],
+      protocol_version_statement: "2024-11-05",
+      otp_app: :astraplex
+  end
 
   # Enable LiveDashboard and Swoosh mailbox preview in development
   if Application.compile_env(:astraplex, :dev_routes) do
