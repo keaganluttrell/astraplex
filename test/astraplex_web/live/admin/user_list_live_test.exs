@@ -42,19 +42,18 @@ defmodule AstraplexWeb.Admin.UserListLiveTest do
     test "admin can open new user form and create a user", %{conn: conn} do
       {:ok, view, _html} = live(conn, ~p"/admin/users/new")
 
-      assert has_element?(view, "form")
+      assert has_element?(view, "#new-user-modal")
 
-      result =
-        view
-        |> form("form", %{
-          "user" => %{
-            "email" => "newuser@example.com",
-            "password" => "SecurePass123!",
-            "password_confirmation" => "SecurePass123!",
-            "role" => "staff"
-          }
-        })
-        |> render_submit()
+      view
+      |> form("#new-user-modal form[phx-submit]", %{
+        "user" => %{
+          "email" => "newuser@example.com",
+          "password" => "SecurePass123!",
+          "password_confirmation" => "SecurePass123!",
+          "role" => "staff"
+        }
+      })
+      |> render_submit()
 
       # After successful creation, should redirect to index
       assert_redirect(view, ~p"/admin/users")
@@ -64,7 +63,7 @@ defmodule AstraplexWeb.Admin.UserListLiveTest do
       {:ok, view, _html} = live(conn, ~p"/admin/users/new")
 
       view
-      |> form("form", %{
+      |> form("#new-user-modal form[phx-submit]", %{
         "user" => %{
           "email" => "brandnew@example.com",
           "password" => "SecurePass123!",
@@ -80,7 +79,7 @@ defmodule AstraplexWeb.Admin.UserListLiveTest do
       assert html =~ "brandnew@example.com"
     end
 
-    test "admin can change a user's role", %{conn: conn, user: admin} do
+    test "admin can change a user's role", %{conn: conn, user: _admin} do
       {:ok, hashed} = AshAuthentication.BcryptProvider.hash("ValidPassword123!")
 
       staff =
