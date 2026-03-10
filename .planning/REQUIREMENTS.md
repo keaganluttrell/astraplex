@@ -20,8 +20,8 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### AI Tooling
 
-- [ ] **AI-01**: Ash AI integration (use case TBD by research)
-- [ ] **AI-02**: MCP server exposing Ash domains as tools for AI agents
+- [x] **AI-01**: Ash AI integration (use case TBD by research)
+- [x] **AI-02**: MCP server exposing Ash domains as tools for AI agents
 
 ### Foundation
 
@@ -158,8 +158,8 @@ Which phases cover which requirements. Updated during roadmap creation.
 | QUAL-06 | Phase 1: Engineering Quality | Complete |
 | QUAL-07 | Phase 1: Engineering Quality | Complete |
 | QUAL-08 | Phase 1: Engineering Quality | Complete |
-| AI-01 | Phase 2: AI Tooling | Pending |
-| AI-02 | Phase 2: AI Tooling | Pending |
+| AI-01 | Phase 2: AI Tooling | Complete |
+| AI-02 | Phase 2: AI Tooling | Complete |
 | FOUND-01 | Phase 3: Foundation & Auth | Pending |
 | FOUND-02 | Phase 3: Foundation & Auth | Pending |
 | FOUND-03 | Phase 3: Foundation & Auth | Pending |

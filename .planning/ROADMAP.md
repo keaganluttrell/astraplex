@@ -51,10 +51,11 @@ Plans:
   1. An AI agent (Claude Code) can connect to the MCP server and invoke Ash domain actions as tools
   2. The System/Health domain is accessible via MCP and returns valid health data
   3. New domains added in future phases are auto-discovered by MCP with no config changes
-**Plans**: 1 plan
+**Plans**: 2 plans
 
 Plans:
-- [ ] 02-01-PLAN.md -- Add ash_ai, create System/Health domain, wire MCP dev server, configure .mcp.json
+- [x] 02-01-PLAN.md -- Add ash_ai, create System/Health domain, wire MCP dev server, configure .mcp.json
+- [ ] 02-02-PLAN.md -- Set up production MCP router exposing domain tools (check_health) via AshAi.Mcp.Router
 
 ### Phase 3: Foundation & Auth
 **Goal**: Admins can create and manage user accounts, and users can securely log in and maintain sessions
@@ -190,8 +191,8 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Engineering Quality | 1/3 | Complete    | 2026-03-10 |
-| 2. AI Tooling | 0/1 | Not started | - |
+| 1. Engineering Quality | 3/3 | Complete    | 2026-03-10 |
+| 2. AI Tooling | 1/2 | In progress | - |
 | 3. Foundation & Auth | 0/? | Not started | - |
 | 4. Channels | 0/? | Not started | - |
 | 5. Conversations | 0/? | Not started | - |
