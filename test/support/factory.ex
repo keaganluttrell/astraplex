@@ -17,4 +17,17 @@ defmodule Astraplex.Factory do
       hashed
     end)
   end
+
+  factory Astraplex.Messaging.Channel do
+    attribute(:name, fn -> "channel-#{System.unique_integer([:positive])}" end)
+    attribute(:description, fn -> "Test channel" end)
+    attribute(:status, fn -> :active end)
+  end
+
+  factory Astraplex.Messaging.Membership do
+  end
+
+  factory Astraplex.Messaging.Message do
+    attribute(:body, fn -> "Test message #{System.unique_integer([:positive])}" end)
+  end
 end
