@@ -34,12 +34,12 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Channels
 
-- [ ] **CHAN-01**: Admin can create a channel with a name and description
-- [ ] **CHAN-02**: Admin can invite users to a channel
-- [ ] **CHAN-03**: Admin can remove users from a channel
-- [ ] **CHAN-04**: User can view list of channels they are a member of
-- [ ] **CHAN-05**: New channel members can see full message history
-- [ ] **CHAN-06**: Admin can archive a channel (no new messages, history preserved)
+- [x] **CHAN-01**: Admin can create a channel with a name and description
+- [x] **CHAN-02**: Admin can invite users to a channel
+- [x] **CHAN-03**: Admin can remove users from a channel
+- [x] **CHAN-04**: User can view list of channels they are a member of
+- [x] **CHAN-05**: New channel members can see full message history
+- [x] **CHAN-06**: Admin can archive a channel (no new messages, history preserved)
 
 ### Direct Messages
 
@@ -166,12 +166,12 @@ Which phases cover which requirements. Updated during roadmap creation.
 | FOUND-04 | Phase 3: Foundation & Auth | Complete |
 | FOUND-05 | Phase 3: Foundation & Auth | Complete |
 | FOUND-06 | Phase 3: Foundation & Auth | Complete |
-| CHAN-01 | Phase 4: Channels | Pending |
-| CHAN-02 | Phase 4: Channels | Pending |
-| CHAN-03 | Phase 4: Channels | Pending |
-| CHAN-04 | Phase 4: Channels | Pending |
-| CHAN-05 | Phase 4: Channels | Pending |
-| CHAN-06 | Phase 4: Channels | Pending |
+| CHAN-01 | Phase 4: Channels | Complete |
+| CHAN-02 | Phase 4: Channels | Complete |
+| CHAN-03 | Phase 4: Channels | Complete |
+| CHAN-04 | Phase 4: Channels | Complete |
+| CHAN-05 | Phase 4: Channels | Complete |
+| CHAN-06 | Phase 4: Channels | Complete |
 | DM-01 | Phase 5: Conversations | Pending |
 | DM-02 | Phase 5: Conversations | Pending |
 | DM-03 | Phase 5: Conversations | Pending |
