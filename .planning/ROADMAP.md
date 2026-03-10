@@ -104,11 +104,12 @@ Plans:
   3. User sees only channels they are a member of in their channel list
   4. A newly invited channel member can scroll back and see the full message history
   5. Admin can archive a channel, preventing new messages while preserving history
-**Plans**: TBD
+**Plans**: 3 plans
 
 Plans:
-- [ ] 04-01: TBD
-- [ ] 04-02: TBD
+- [ ] 04-01-PLAN.md -- Messaging domain with Channel, Membership, Message resources, policies, PubSub, factories, and integration tests
+- [ ] 04-02-PLAN.md -- Admin channel management UI at /admin/channels with create/edit drawers, member management, and archive
+- [ ] 04-03-PLAN.md -- Channel chat view, sidebar integration with real channel data, and real-time PubSub messaging
 
 ### Phase 5: Conversations
 **Goal**: Users can start 1:1 direct messages and ad-hoc group conversations, visible only to participants
@@ -216,7 +217,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 3.1 -> 4 -> 5 -> 6 -> 7 -> 8 -> 
 | 2. AI Tooling            | 1/2            | In progress | -          |
 | 3. Foundation & Auth     | 3/3            | Complete    | 2026-03-10 |
 | 3.1. UI Patterns         | 2/3            | In progress | -          |
-| 4. Channels              | 0/?            | Not started | -          |
+| 4. Channels              | 0/3            | Not started | -          |
 | 5. Conversations         | 0/?            | Not started | -          |
 | 6. Messaging Core        | 0/?            | Not started | -          |
 | 7. Presence & Indicators | 0/?            | Not started | -          |
