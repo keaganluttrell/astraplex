@@ -243,9 +243,9 @@ defmodule AstraplexWeb.Layouts do
         current_id={@current_channel_id}
       >
         <:add_button :if={@role == :admin}>
-          <button class="btn btn-ghost btn-xs" phx-click="new_channel_sidebar">
+          <.link navigate={~p"/admin/channels/new"} class="btn btn-ghost btn-xs">
             <.icon name="hero-plus" class="size-3" />
-          </button>
+          </.link>
         </:add_button>
       </.sidebar_group>
       <.sidebar_group title="Direct Messages" placeholder="(No conversations yet)" />
