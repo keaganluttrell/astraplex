@@ -117,8 +117,8 @@ defmodule AstraplexWeb.Layouts do
           {render_slot(@title_action)}
         </div>
       </div>
-      <div class="flex-1 overflow-y-auto px-4 py-2">
-        <div class="max-w-3xl mx-auto">
+      <div id="chat-scroll" phx-hook="ScrollBottom" class="flex-1 overflow-y-auto px-4 py-2">
+        <div class="max-w-3xl mx-auto flex flex-col justify-end min-h-full">
           {render_slot(@inner_block)}
         </div>
       </div>
