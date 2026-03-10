@@ -90,7 +90,7 @@ Plans:
 **Plans:** 2 plans
 
 Plans:
-- [ ] 03.1-01-PLAN.md -- Shared UI components module and role-based shell layouts (top bar, sidebar, user dropdown)
+- [x] 03.1-01-PLAN.md -- Shared UI components module and role-based shell layouts (top bar, sidebar, user dropdown)
 - [ ] 03.1-02-PLAN.md -- Mobile dock, bottom sheet, chat layout, wire existing LiveViews into new shells
 
 ### Phase 4: Channels
@@ -214,7 +214,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 3.1 -> 4 -> 5 -> 6 -> 7 -> 8 -> 
 | 1. Engineering Quality   | 3/3            | Complete    | 2026-03-10 |
 | 2. AI Tooling            | 1/2            | In progress | -          |
 | 3. Foundation & Auth     | 3/3            | Complete    | 2026-03-10 |
-| 3.1. UI Patterns         | 0/2            | Not started | -          |
+| 3.1. UI Patterns         | 1/2            | In progress | -          |
 | 4. Channels              | 0/?            | Not started | -          |
 | 5. Conversations         | 0/?            | Not started | -          |
 | 6. Messaging Core        | 0/?            | Not started | -          |

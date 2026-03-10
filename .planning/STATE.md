@@ -2,16 +2,16 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: completed
-stopped_at: Phase 3.1 context gathered
-last_updated: "2026-03-10T14:11:26.903Z"
-last_activity: 2026-03-10 -- Completed Plan 03-03 (Admin UI & Bootstrap)
+status: in_progress
+stopped_at: Completed 03.1-01 (App Shell & Shared Components)
+last_updated: "2026-03-10T14:47:01Z"
+last_activity: 2026-03-10 -- Completed Plan 03.1-01 (App Shell & Shared Components)
 progress:
   total_phases: 11
   completed_phases: 3
-  total_plans: 8
-  completed_plans: 8
-  percent: 32
+  total_plans: 9
+  completed_plans: 9
+  percent: 35
 ---
 
 # Project State
@@ -21,23 +21,23 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-09)
 
 **Core value:** Staff and admins can communicate in real time with messages that arrive instantly, scoped to conversations they are members of.
-**Current focus:** Phase 3: Foundation & Auth
+**Current focus:** Phase 3.1: UI Patterns
 
 ## Current Position
 
-Phase: 3 of 10 (Foundation & Auth) -- IN PROGRESS
-Plan: 3 of 5 in current phase
-Status: Plan 03-03 Complete
-Last activity: 2026-03-10 -- Completed Plan 03-03 (Admin UI & Bootstrap)
+Phase: 3.1 of 10 (UI Patterns) -- IN PROGRESS
+Plan: 1 of 1 in current phase
+Status: Plan 03.1-01 Complete
+Last activity: 2026-03-10 -- Completed Plan 03.1-01 (App Shell & Shared Components)
 
-Progress: [████░░░░░░] 32%
+Progress: [████░░░░░░] 35%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 8
+- Total plans completed: 9
 - Average duration: 7 min
-- Total execution time: 0.85 hours
+- Total execution time: 0.95 hours
 
 **By Phase:**
 
@@ -46,9 +46,10 @@ Progress: [████░░░░░░] 32%
 | 1. Engineering Quality | 3/3 | 10 min | 5 min |
 | 2. AI Tooling | 2/2 | 13 min | 7 min |
 | 3. Foundation & Auth | 3/5 | 22 min | 7 min |
+| 3.1 UI Patterns | 1/1 | 6 min | 6 min |
 
 **Recent Trend:**
-- Last 5 plans: 02-01 (12 min), 02-02 (1 min), 03-01 (6 min), 03-02 (11 min), 03-03 (5 min)
+- Last 5 plans: 02-02 (1 min), 03-01 (6 min), 03-02 (11 min), 03-03 (5 min), 03.1-01 (6 min)
 - Trend: Consistent
 
 *Updated after each plan completion*
@@ -89,6 +90,10 @@ Recent decisions affecting current work:
 - [03-03]: Two-step deactivation confirmation modal per locked CONTEXT.md decision
 - [03-03]: Mix task uses authorize?: false for bootstrap (no actor exists yet)
 - [03-03]: Dev seeds guarded with Mix.env() == :dev for safety
+- [03.1-01]: Bridge app/1 auto-selects admin_shell or staff_shell based on current_user.role
+- [03.1-01]: Set layout: on live_sessions in router to enable app layout rendering
+- [03.1-01]: HTML details/summary for collapsible sidebar groups (CSS-only, no JS)
+- [03.1-01]: DaisyUI dropdown with direction=top for user info dropdown at sidebar bottom
 
 ### Roadmap Evolution
 
@@ -105,6 +110,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-10T14:11:26.900Z
-Stopped at: Phase 3.1 context gathered
-Resume file: .planning/phases/03.1-ui-patterns/03.1-CONTEXT.md
+Last session: 2026-03-10T14:47:01Z
+Stopped at: Completed 03.1-01 (App Shell & Shared Components)
+Resume file: .planning/phases/03.1-ui-patterns/03.1-01-SUMMARY.md

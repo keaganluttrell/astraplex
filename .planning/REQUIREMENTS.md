@@ -205,7 +205,7 @@ Which phases cover which requirements. Updated during roadmap creation.
 | ADMN-04 | Phase 9: Administration | Pending |
 | UI-01 | Phase 10: UI & PWA | Pending |
 | UI-03 | Phase 10: UI & PWA | Pending |
-| UI-04 | Phase 10: UI & PWA | Pending |
+| UI-04 | Phase 3.1: UI Patterns / Phase 10: UI & PWA | Partial (sidebar scaffold) |
 
 **Coverage:**
 - v1 requirements: 56 total
