@@ -10,7 +10,14 @@ defmodule Mix.Tasks.Astraplex.CreateAdminTest do
     test "creates an admin user with valid email and password" do
       CreateAdmin.run(["admin@test.com", "SecurePass123!"])
 
-      assert [user] = Ash.read!(User, authorize?: false)
+      require Ash.Query
+
+      user =
+        User
+        |> Ash.Query.filter(email == "admin@test.com")
+        |> Ash.read_one!(authorize?: false)
+
+      assert user != nil
       assert to_string(user.email) == "admin@test.com"
       assert user.role == :admin
       assert user.status == :active
