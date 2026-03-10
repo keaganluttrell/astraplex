@@ -11,10 +11,12 @@ defmodule AstraplexWeb.DashboardLive do
     ~H"""
     <div class="p-8">
       <h1 class="text-2xl font-bold">Welcome to Astraplex</h1>
-      <p class="mt-2">Logged in as {@current_user.email}</p>
-      <.link href={~p"/sign-out"} method="get" class="btn btn-ghost mt-4">
-        Sign out
-      </.link>
+      <p class="mt-2 text-base-content/70">Logged in as {@current_user.email}</p>
+      <div class="mt-6">
+        <.link href={~p"/sign-out"} class="btn btn-outline btn-sm">
+          Sign out
+        </.link>
+      </div>
     </div>
     """
   end
