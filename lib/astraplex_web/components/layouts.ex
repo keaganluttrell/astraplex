@@ -34,7 +34,6 @@ defmodule AstraplexWeb.Layouts do
   attr :channels, :list, default: []
   attr :current_channel_id, :string, default: nil
   slot :inner_block, required: true
-  slot :drawer
 
   def admin_shell(assigns) do
     ~H"""
@@ -50,12 +49,6 @@ defmodule AstraplexWeb.Layouts do
       <main class="flex-1 overflow-y-auto pb-16 md:pb-0">
         {render_slot(@inner_block)}
       </main>
-      <aside
-        :if={@drawer != []}
-        class="w-80 lg:w-96 border-l border-base-300 bg-base-100 overflow-y-auto shrink-0 hidden md:block"
-      >
-        {render_slot(@drawer)}
-      </aside>
       <.mobile_dock current_user={@current_user} role={:admin} active_page={@active_page} />
       <.apps_bottom_sheet role={:admin} />
     </.base_shell>
