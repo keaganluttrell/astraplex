@@ -217,7 +217,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 3.1 -> 4 -> 5 -> 6 -> 7 -> 8 -> 
 | 2. AI Tooling            | 1/2            | In progress | -          |
 | 3. Foundation & Auth     | 3/3            | Complete    | 2026-03-10 |
 | 3.1. UI Patterns         | 2/3            | In progress | -          |
-| 4. Channels              | 0/3            | Not started | -          |
+| 4. Channels              | 2/3 | In Progress|  |
 | 5. Conversations         | 0/?            | Not started | -          |
 | 6. Messaging Core        | 0/?            | Not started | -          |
 | 7. Presence & Indicators | 0/?            | Not started | -          |
