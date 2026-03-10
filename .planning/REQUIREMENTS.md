@@ -28,9 +28,9 @@ Requirements for initial release. Each maps to roadmap phases.
 - [x] **FOUND-01**: Admin can create user accounts with email and password
 - [x] **FOUND-02**: Admin can assign users the Admin or Staff role
 - [x] **FOUND-03**: Admin can deactivate user accounts (soft delete, preserves message history)
-- [ ] **FOUND-04**: User can log in with email and password
-- [ ] **FOUND-05**: User session persists across browser refresh
-- [ ] **FOUND-06**: User can log out from any page
+- [x] **FOUND-04**: User can log in with email and password
+- [x] **FOUND-05**: User session persists across browser refresh
+- [x] **FOUND-06**: User can log out from any page
 
 ### Channels
 
@@ -163,9 +163,9 @@ Which phases cover which requirements. Updated during roadmap creation.
 | FOUND-01 | Phase 3: Foundation & Auth | Complete |
 | FOUND-02 | Phase 3: Foundation & Auth | Complete |
 | FOUND-03 | Phase 3: Foundation & Auth | Complete |
-| FOUND-04 | Phase 3: Foundation & Auth | Pending |
-| FOUND-05 | Phase 3: Foundation & Auth | Pending |
-| FOUND-06 | Phase 3: Foundation & Auth | Pending |
+| FOUND-04 | Phase 3: Foundation & Auth | Complete |
+| FOUND-05 | Phase 3: Foundation & Auth | Complete |
+| FOUND-06 | Phase 3: Foundation & Auth | Complete |
 | CHAN-01 | Phase 4: Channels | Pending |
 | CHAN-02 | Phase 4: Channels | Pending |
 | CHAN-03 | Phase 4: Channels | Pending |
