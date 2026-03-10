@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: completed
-stopped_at: Completed 03.1-02 (Mobile Dock, Shell Wiring & Chat Layout)
-last_updated: "2026-03-10T14:59:15.548Z"
-last_activity: 2026-03-10 -- Completed Plan 03.1-02 (Mobile Dock, Shell Wiring & Chat Layout)
+stopped_at: Completed 03.1-03 (UAT Fixes)
+last_updated: "2026-03-10T16:39:30Z"
+last_activity: 2026-03-10 -- Completed Plan 03.1-03 (UAT Fixes)
 progress:
   total_phases: 11
   completed_phases: 4
-  total_plans: 10
-  completed_plans: 10
+  total_plans: 11
+  completed_plans: 11
   percent: 38
 ---
 
@@ -26,18 +26,18 @@ See: .planning/PROJECT.md (updated 2026-03-09)
 ## Current Position
 
 Phase: 3.1 of 10 (UI Patterns) -- COMPLETE
-Plan: 2 of 2 in current phase
-Status: Plan 03.1-02 Complete
-Last activity: 2026-03-10 -- Completed Plan 03.1-02 (Mobile Dock, Shell Wiring & Chat Layout)
+Plan: 3 of 3 in current phase
+Status: Plan 03.1-03 Complete
+Last activity: 2026-03-10 -- Completed Plan 03.1-03 (UAT Fixes)
 
 Progress: [████░░░░░░] 38%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 10
-- Average duration: 7 min
-- Total execution time: 1.02 hours
+- Total plans completed: 11
+- Average duration: 6 min
+- Total execution time: 1.09 hours
 
 **By Phase:**
 
@@ -46,10 +46,10 @@ Progress: [████░░░░░░] 38%
 | 1. Engineering Quality | 3/3 | 10 min | 5 min |
 | 2. AI Tooling | 2/2 | 13 min | 7 min |
 | 3. Foundation & Auth | 3/5 | 22 min | 7 min |
-| 3.1 UI Patterns | 2/2 | 10 min | 5 min |
+| 3.1 UI Patterns | 3/3 | 14 min | 5 min |
 
 **Recent Trend:**
-- Last 5 plans: 03-01 (6 min), 03-02 (11 min), 03-03 (5 min), 03.1-01 (6 min), 03.1-02 (4 min)
+- Last 5 plans: 03-02 (11 min), 03-03 (5 min), 03.1-01 (6 min), 03.1-02 (4 min), 03.1-03 (4 min)
 - Trend: Consistent
 
 *Updated after each plan completion*
@@ -98,6 +98,10 @@ Recent decisions affecting current work:
 - [03.1-02]: layout: false on live_sessions prevents double-wrapping by Phoenix app layout
 - [03.1-02]: DaisyUI dock CSS class for mobile navigation (no DaisyUIComponents dock component)
 - [03.1-02]: DaisyUIComponents modal with modal-bottom class for apps bottom sheet
+- [03.1-03]: Breadcrumb path as list of {label, url|nil} tuples via breadcrumb_path assign
+- [03.1-03]: daisyUI breadcrumbs CSS class for breadcrumb styling with slash separators
+- [03.1-03]: User list sorted by email (Enum.sort_by) for stable order after role changes
+- [03.1-03]: page_header removed from content areas, breadcrumbs in top bar replace it
 
 ### Roadmap Evolution
 
@@ -114,6 +118,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-10T14:54:18Z
-Stopped at: Completed 03.1-02 (Mobile Dock, Shell Wiring & Chat Layout)
-Resume file: .planning/phases/03.1-ui-patterns/03.1-02-SUMMARY.md
+Last session: 2026-03-10T16:39:30Z
+Stopped at: Completed 03.1-03 (UAT Fixes)
+Resume file: .planning/phases/03.1-ui-patterns/03.1-03-SUMMARY.md
