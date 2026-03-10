@@ -25,6 +25,7 @@ defmodule Astraplex.Messaging.Membership do
     defaults([:read, :destroy])
 
     create :create do
+      primary?(true)
       accept([:channel_id, :user_id])
     end
   end

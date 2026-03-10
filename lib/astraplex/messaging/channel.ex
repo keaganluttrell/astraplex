@@ -51,10 +51,12 @@ defmodule Astraplex.Messaging.Channel do
     defaults([:read])
 
     create :create do
+      primary?(true)
       accept([:name, :description])
     end
 
     update :update do
+      primary?(true)
       accept([:name, :description])
     end
 

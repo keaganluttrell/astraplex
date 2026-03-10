@@ -20,7 +20,7 @@ defmodule Astraplex.Messaging.Message do
   end
 
   relationships do
-    belongs_to :channel, Astraplex.Messaging.Channel, allow_nil?: true
+    belongs_to :channel, Astraplex.Messaging.Channel, allow_nil?: true, public?: true
     belongs_to :sender, Astraplex.Accounts.User, allow_nil?: false
   end
 
@@ -36,12 +36,7 @@ defmodule Astraplex.Messaging.Message do
 
   policies do
     policy action(:send_message) do
-      authorize_if(
-        expr(
-          exists(channel.memberships, user_id == ^actor(:id)) and
-            channel.status != :archived
-        )
-      )
+      authorize_if(Astraplex.Messaging.Checks.CanSendToChannel)
     end
 
     policy action(:read) do
