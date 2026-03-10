@@ -91,6 +91,9 @@ defmodule AstraplexWeb do
       # App-level shared UI components (avatar, page_header, empty_state, skeletons)
       import AstraplexWeb.Components.UI
 
+      # Messaging-specific components (member list, user picker, message bubble)
+      import AstraplexWeb.Components.Messaging
+
       # Utility functions from CoreComponents (translate_error, etc.)
       import AstraplexWeb.CoreComponents, only: [translate_error: 1, translate_errors: 2]
 
