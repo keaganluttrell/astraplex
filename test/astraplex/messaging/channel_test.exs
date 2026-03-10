@@ -70,7 +70,7 @@ defmodule Astraplex.Messaging.ChannelTest do
       assert hd(channels).id == channel1.id
     end
 
-    test "excludes archived channels", %{admin: admin, staff: staff} do
+    test "includes archived channels for member access", %{admin: admin, staff: staff} do
       channel = Ash.create!(Astraplex.Messaging.Channel, %{name: "archived-chan"}, actor: admin)
 
       Ash.create!(Astraplex.Messaging.Membership, %{channel_id: channel.id, user_id: staff.id},
@@ -82,7 +82,9 @@ defmodule Astraplex.Messaging.ChannelTest do
       channels =
         Ash.read!(Astraplex.Messaging.Channel, action: :list_for_user, actor: staff)
 
-      assert channels == []
+      assert length(channels) == 1
+      assert to_string(hd(channels).name) == "archived-chan"
+      assert hd(channels).status == :archived
     end
   end
 end

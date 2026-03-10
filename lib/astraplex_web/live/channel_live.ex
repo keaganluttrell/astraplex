@@ -171,7 +171,12 @@ defmodule AstraplexWeb.ChannelLive do
     Astraplex.Messaging.Channel
     |> Ash.read!(action: :list_for_user, actor: actor)
     |> Enum.map(fn c ->
-      %{id: to_string(c.id), label: "#" <> to_string(c.name), url: ~p"/channels/#{c.id}"}
+      %{
+        id: to_string(c.id),
+        label: "#" <> to_string(c.name),
+        url: ~p"/channels/#{c.id}",
+        archived: c.status == :archived
+      }
     end)
   end
 end

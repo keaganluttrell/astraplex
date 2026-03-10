@@ -317,7 +317,10 @@ defmodule AstraplexWeb.Layouts do
         <li :for={item <- @items}>
           <.link
             navigate={item.url}
-            class={to_string(item.id) == to_string(@current_id) && "menu-active"}
+            class={[
+              to_string(item.id) == to_string(@current_id) && "menu-active",
+              item[:archived] && "opacity-50"
+            ]}
           >
             {item.label}
             <span class="badge badge-sm badge-primary hidden"></span>

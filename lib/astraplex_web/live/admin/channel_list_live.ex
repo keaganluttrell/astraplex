@@ -266,6 +266,9 @@ defmodule AstraplexWeb.Admin.ChannelListLive do
         </.badge>
       </:col>
       <:action :let={ch}>
+        <.link navigate={~p"/channels/#{ch.id}"} class="btn btn-ghost btn-xs">
+          <.icon name="hero-eye-micro" class="size-4" />
+        </.link>
         <.link navigate={~p"/admin/channels/#{ch.id}"} class="btn btn-ghost btn-xs">
           <.icon name="hero-cog-6-tooth-micro" class="size-4" />
         </.link>
@@ -411,7 +414,12 @@ defmodule AstraplexWeb.Admin.ChannelListLive do
     Channel
     |> Ash.read!(action: :list_for_user, actor: socket.assigns.current_user)
     |> Enum.map(fn c ->
-      %{id: to_string(c.id), label: "#" <> to_string(c.name), url: ~p"/channels/#{c.id}"}
+      %{
+        id: to_string(c.id),
+        label: "#" <> to_string(c.name),
+        url: ~p"/channels/#{c.id}",
+        archived: c.status == :archived
+      }
     end)
   end
 

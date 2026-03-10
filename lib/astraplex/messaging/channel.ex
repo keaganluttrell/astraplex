@@ -66,8 +66,8 @@ defmodule Astraplex.Messaging.Channel do
     end
 
     read :list_for_user do
-      description("List active channels the current user is a member of.")
-      filter(expr(status == :active and exists(memberships, user_id == ^actor(:id))))
+      description("List active and archived channels the current user is a member of.")
+      filter(expr(status in [:active, :archived] and exists(memberships, user_id == ^actor(:id))))
       prepare(build(sort: [name: :asc]))
     end
   end
