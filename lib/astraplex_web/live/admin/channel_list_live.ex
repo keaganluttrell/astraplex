@@ -61,6 +61,10 @@ defmodule AstraplexWeb.Admin.ChannelListLive do
     {:noreply, socket}
   end
 
+  def handle_event("cancel_create", _params, socket) do
+    {:noreply, assign(socket, :channel_form, nil)}
+  end
+
   def handle_event("new_channel", _params, socket) do
     form =
       Channel
@@ -199,35 +203,30 @@ defmodule AstraplexWeb.Admin.ChannelListLive do
       channels={@channels}
       breadcrumb_path={[{"Admin", ~p"/admin/users"}, {"Channels", nil}]}
     >
-      <div class="flex flex-1 overflow-hidden">
-        <div class="flex-1 overflow-y-auto p-6">
-          <div class="flex justify-end mb-4">
-            <button phx-click="new_channel" class="btn btn-primary btn-sm">New Channel</button>
-          </div>
-
-          <.channel_table :if={@channels != []} channels={@channels} />
-          <.empty_state
-            :if={@channels == []}
-            icon="hero-hashtag"
-            title="No channels yet"
-            description="Create your first channel to get started."
-          />
+      <div class="p-6">
+        <div class="flex justify-end mb-4">
+          <button phx-click="new_channel" class="btn btn-primary btn-sm">New Channel</button>
         </div>
 
-        <.create_form :if={@channel_form && !@selected_channel} form={@channel_form} />
-        <.settings_panel
-          :if={@selected_channel}
-          channel={@selected_channel}
-          form={@channel_form}
-          users={available_users(@users, @selected_channel, @member_search)}
-          show_user_picker={@show_user_picker}
-          selected_member_ids={@selected_member_ids}
-          member_search={@member_search}
-          confirm_archive={@confirm_archive}
-          confirm_remove_member={@confirm_remove_member}
+        <.channel_table :if={@channels != []} channels={@channels} />
+        <.empty_state
+          :if={@channels == []}
+          icon="hero-hashtag"
+          title="No channels yet"
+          description="Create your first channel to get started."
         />
       </div>
 
+      <.create_modal :if={@channel_form && !@selected_channel} form={@channel_form} />
+      <.settings_modal
+        :if={@selected_channel}
+        channel={@selected_channel}
+        form={@channel_form}
+        users={available_users(@users, @selected_channel, @member_search)}
+        show_user_picker={@show_user_picker}
+        selected_member_ids={@selected_member_ids}
+        member_search={@member_search}
+      />
       <.archive_modal :if={@confirm_archive} channel={@selected_channel} />
       <.remove_member_modal
         :if={@confirm_remove_member}
@@ -263,92 +262,89 @@ defmodule AstraplexWeb.Admin.ChannelListLive do
     """
   end
 
-  defp create_form(assigns) do
+  defp create_modal(assigns) do
     ~H"""
-    <div class="w-80 border-l border-base-300 bg-base-100 overflow-y-auto p-6 shrink-0">
+    <.modal id="create-channel-modal" show on_cancel={JS.push("cancel_create")}>
       <h3 class="text-lg font-bold mb-4">Create Channel</h3>
       <.form for={@form} phx-change="validate_channel" phx-submit="save_channel">
         <.form_input field={@form[:name]} label="Name" required />
         <.form_input field={@form[:description]} type="textarea" label="Description" />
         <div class="mt-4 flex justify-end gap-2">
-          <.link navigate={~p"/admin/channels"} class="btn btn-ghost">Cancel</.link>
+          <button type="button" phx-click="cancel_create" class="btn btn-ghost">Cancel</button>
           <.button type="submit" color="primary">Create Channel</.button>
         </div>
       </.form>
-    </div>
+    </.modal>
     """
   end
 
-  defp settings_panel(assigns) do
+  defp settings_modal(assigns) do
     ~H"""
-    <div class="w-96 border-l border-base-300 bg-base-100 overflow-y-auto p-6 flex flex-col gap-6 shrink-0">
-      <div class="flex items-center justify-between">
+    <.modal id="settings-channel-modal" show on_cancel={JS.navigate(~p"/admin/channels")}>
+      <div class="flex flex-col gap-6">
         <h3 class="text-lg font-bold">Channel Settings</h3>
-        <.link navigate={~p"/admin/channels"} class="btn btn-ghost btn-sm btn-circle">
-          <.icon name="hero-x-mark-micro" class="size-5" />
-        </.link>
-      </div>
 
-      <%!-- Details section --%>
-      <section>
-        <h4 class="font-semibold text-sm mb-2">Details</h4>
-        <.form for={@form} phx-change="validate_channel" phx-submit="save_channel">
-          <.form_input field={@form[:name]} label="Name" required />
-          <.form_input field={@form[:description]} type="textarea" label="Description" />
-          <div class="mt-2 flex justify-end">
-            <.button type="submit" color="primary" size="sm">Save Changes</.button>
-          </div>
-        </.form>
-      </section>
+        <%!-- Details section --%>
+        <section>
+          <h4 class="font-semibold text-sm mb-2">Details</h4>
+          <.form for={@form} phx-change="validate_channel" phx-submit="save_channel">
+            <.form_input field={@form[:name]} label="Name" required />
+            <.form_input field={@form[:description]} type="textarea" label="Description" />
+            <div class="mt-2 flex justify-end">
+              <.button type="submit" color="primary" size="sm">Save Changes</.button>
+            </div>
+          </.form>
+        </section>
 
-      <div class="divider my-0"></div>
+        <div class="divider my-0"></div>
 
-      <%!-- Members section --%>
-      <section>
-        <div class="flex items-center justify-between mb-2">
-          <h4 class="font-semibold text-sm">Members ({length(@channel.members)})</h4>
-          <button phx-click="toggle_user_picker" class="btn btn-ghost btn-xs">
-            <.icon name="hero-user-plus-micro" class="size-4" /> Add
-          </button>
-        </div>
-
-        <div :if={@show_user_picker} class="mb-4 p-3 bg-base-200 rounded-lg">
-          <.user_picker
-            users={@users}
-            selected_ids={@selected_member_ids}
-            search={@member_search}
-            on_toggle="toggle_member"
-            on_search="search_members"
-          />
-          <div class="mt-2 flex justify-end gap-2">
-            <button phx-click="toggle_user_picker" class="btn btn-ghost btn-xs">Cancel</button>
-            <button
-              phx-click="add_members"
-              class="btn btn-primary btn-xs"
-              disabled={@selected_member_ids == []}
-            >
-              Add Selected
+        <%!-- Members section --%>
+        <section>
+          <div class="flex items-center justify-between mb-2">
+            <h4 class="font-semibold text-sm">Members ({length(@channel.members)})</h4>
+            <button phx-click="toggle_user_picker" class="btn btn-ghost btn-xs">
+              <.icon name="hero-user-plus-micro" class="size-4" /> Add
             </button>
           </div>
-        </div>
 
-        <.member_list
-          members={@channel.members}
-          removable
-          on_remove="confirm_remove_member"
-        />
-      </section>
+          <div :if={@show_user_picker} class="mb-4 p-3 bg-base-200 rounded-lg">
+            <.user_picker
+              users={@users}
+              selected_ids={@selected_member_ids}
+              search={@member_search}
+              on_toggle="toggle_member"
+              on_search="search_members"
+            />
+            <div class="mt-2 flex justify-end gap-2">
+              <button phx-click="toggle_user_picker" class="btn btn-ghost btn-xs">Cancel</button>
+              <button
+                phx-click="add_members"
+                class="btn btn-primary btn-xs"
+                disabled={@selected_member_ids == []}
+              >
+                Add Selected
+              </button>
+            </div>
+          </div>
 
-      <div class="divider my-0"></div>
+          <.member_list
+            members={@channel.members}
+            removable
+            on_remove="confirm_remove_member"
+          />
+        </section>
 
-      <%!-- Danger zone --%>
-      <section>
-        <h4 class="font-semibold text-sm text-error mb-2">Danger Zone</h4>
-        <button phx-click="confirm_archive" class="btn btn-error btn-sm btn-outline w-full">
-          Archive Channel
-        </button>
-      </section>
-    </div>
+        <div class="divider my-0"></div>
+
+        <%!-- Danger zone --%>
+        <section>
+          <h4 class="font-semibold text-sm text-error mb-2">Danger Zone</h4>
+          <button phx-click="confirm_archive" class="btn btn-error btn-sm btn-outline w-full">
+            Archive Channel
+          </button>
+        </section>
+      </div>
+    </.modal>
     """
   end
 
