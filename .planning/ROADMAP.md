@@ -67,11 +67,12 @@ Plans:
   3. Admin can deactivate a user account and that user can no longer log in, but their message history is preserved
   4. User can log in with email/password, refresh the browser, and remain logged in
   5. User can log out from any page and is redirected to the login screen
-**Plans**: TBD
+**Plans**: 3 plans
 
 Plans:
-- [ ] 03-01: TBD
-- [ ] 03-02: TBD
+- [ ] 03-01-PLAN.md -- Accounts domain with User/Token resources, AshAuthentication, admin CRUD actions, and negative auth tests
+- [ ] 03-02-PLAN.md -- Auth web layer: sign-in LiveView, auth controller, LiveAuth hooks, router with protected scopes
+- [ ] 03-03-PLAN.md -- Admin user management UI at /admin/users, bootstrap mix task, and dev seeds
 
 ### Phase 4: Channels
 **Goal**: Admins can create invite-only channels, manage membership, and members can view their channels with full message history
@@ -193,7 +194,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10
 |-------|----------------|--------|-----------|
 | 1. Engineering Quality | 3/3 | Complete    | 2026-03-10 |
 | 2. AI Tooling | 1/2 | In progress | - |
-| 3. Foundation & Auth | 0/? | Not started | - |
+| 3. Foundation & Auth | 0/3 | Not started | - |
 | 4. Channels | 0/? | Not started | - |
 | 5. Conversations | 0/? | Not started | - |
 | 6. Messaging Core | 0/? | Not started | - |
