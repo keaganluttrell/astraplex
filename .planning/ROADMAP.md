@@ -87,11 +87,12 @@ Plans:
   4. All existing pages (dashboard, admin users) render inside the new shell chrome
   5. Shared UI components (page header, empty state, avatar, skeletons) are available for all future phases
   6. Chat layout pattern is established as a reusable component for messaging phases
-**Plans:** 2/2 plans complete
+**Plans:** 3 plans (2 complete)
 
 Plans:
 - [x] 03.1-01-PLAN.md -- Shared UI components module and role-based shell layouts (top bar, sidebar, user dropdown)
-- [ ] 03.1-02-PLAN.md -- Mobile dock, bottom sheet, chat layout, wire existing LiveViews into new shells
+- [x] 03.1-02-PLAN.md -- Mobile dock, bottom sheet, chat layout, wire existing LiveViews into new shells
+- [ ] 03.1-03-PLAN.md -- UAT fixes: avatar centering, sidebar icon, breadcrumb top bar, user list sort stability
 
 ### Phase 4: Channels
 **Goal**: Admins can create invite-only channels, manage membership, and members can view their channels with full message history
@@ -214,7 +215,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 3.1 -> 4 -> 5 -> 6 -> 7 -> 8 -> 
 | 1. Engineering Quality   | 3/3            | Complete    | 2026-03-10 |
 | 2. AI Tooling            | 1/2            | In progress | -          |
 | 3. Foundation & Auth     | 3/3            | Complete    | 2026-03-10 |
-| 3.1. UI Patterns         | 1/2            | In progress | -          |
+| 3.1. UI Patterns         | 2/3            | In progress | -          |
 | 4. Channels              | 0/?            | Not started | -          |
 | 5. Conversations         | 0/?            | Not started | -          |
 | 6. Messaging Core        | 0/?            | Not started | -          |
