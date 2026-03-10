@@ -15,8 +15,8 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 1: Engineering Quality** - Project scaffold, test harness, static analysis, git hooks, AI usage rules, and design system (completed 2026-03-10)
 - [x] **Phase 2: AI Tooling** - MCP server exposing Ash domains as tools for Claude Code during development
 - [x] **Phase 3: Foundation & Auth** - Admin-created user accounts, roles, authentication, and session management (completed 2026-03-10)
-- [ ] **Phase 3.1: UI Patterns** - App shell layout, sidebar navigation, mobile dock, shared components (INSERTED)
-- [ ] **Phase 4: Channels** - Admin-managed invite-only channels with membership and message history
+- [x] **Phase 3.1: UI Patterns** - App shell layout, sidebar navigation, mobile dock, shared components (INSERTED)
+- [x] **Phase 4: Channels** - Admin-managed invite-only channels with membership and message history
 - [ ] **Phase 5: Conversations** - User-initiated DMs (1:1) and ad-hoc group messages (2+)
 - [ ] **Phase 6: Messaging Core** - Text and rich text messages, mentions, reactions, threading, and real-time delivery
 - [ ] **Phase 7: Presence & Indicators** - Online/offline status, typing indicators, unread counts, read receipts, and mute
@@ -113,20 +113,20 @@ Plans:
 - [ ] 04-04-PLAN.md -- UAT gap closure: archived channel navigation (admin table view link, sidebar visibility)
 
 ### Phase 5: Conversations
-**Goal**: Users can start 1:1 direct messages and ad-hoc group conversations, visible only to participants
-**Depends on**: Phase 3
+**Goal**: Users can start 1:1 direct messages and ad-hoc group conversations with plain text messaging, visible only to participants
+**Depends on**: Phase 4
 **Requirements**: DM-01, DM-02, DM-03, GRP-01, GRP-02, GRP-03, GRP-04
 **Success Criteria** (what must be TRUE):
   1. User can start a 1:1 DM with any other user and both users see it in their DM list
   2. DM conversations are visible only to the two participants -- no other user can see them
   3. User can create a group conversation by selecting 2+ users, and all participants see it in their group list
   4. Group conversations are visible only to participants -- no non-participant can see them
-  5. User can leave a group conversation and it disappears from their list
-**Plans**: TBD
+  5. GRP-04 (leave group) descoped from v1 -- conversations are permanent
+**Plans**: 2 plans
 
 Plans:
-- [ ] 05-01: TBD
-- [ ] 05-02: TBD
+- [ ] 05-01-PLAN.md -- Conversation and ConversationMembership resources, Message polymorphic extension, policies, PubSub, factories, and integration tests
+- [ ] 05-02-PLAN.md -- ConversationLive with lazy creation, unified DMs sidebar section, real-time messaging, and member list
 
 ### Phase 6: Messaging Core
 **Goal**: Users can send plain and rich text messages with mentions, reactions, and single-depth threading, delivered in real time
@@ -219,7 +219,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 3.1 -> 4 -> 5 -> 6 -> 7 -> 8 -> 
 | 3. Foundation & Auth     | 3/3            | Complete    | 2026-03-10 |
 | 3.1. UI Patterns         | 2/3            | In progress | -          |
 | 4. Channels              | 3/4            | In progress | -          |
-| 5. Conversations         | 0/?            | Not started | -          |
+| 5. Conversations         | 0/2            | Not started | -          |
 | 6. Messaging Core        | 0/?            | Not started | -          |
 | 7. Presence & Indicators | 0/?            | Not started | -          |
 | 8. Notifications         | 0/?            | Not started | -          |
