@@ -71,9 +71,13 @@ defmodule Astraplex.MixProject do
       {:ash, "~> 3.0"},
       {:ash_postgres, "~> 2.0"},
       {:ash_phoenix, "~> 2.0"},
+      {:ash_ai, "~> 0.5"},
 
       # Design system
       {:daisy_ui_components, "~> 0.9"},
+
+      # Policy authorization
+      {:simple_sat, "~> 0.1"},
 
       # Quality tools
       {:credo, "~> 1.7", only: [:dev, :test], runtime: false},

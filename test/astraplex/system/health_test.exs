@@ -3,7 +3,10 @@ defmodule Astraplex.System.HealthTest do
 
   describe "Health :check action" do
     test "returns a health struct with expected fields" do
-      result = Ash.run_action!(Astraplex.System.Health, :check)
+      result =
+        Astraplex.System.Health
+        |> Ash.ActionInput.for_action(:check, %{})
+        |> Ash.run_action!()
 
       assert %Astraplex.System.Health{} = result
       assert result.status == :healthy
