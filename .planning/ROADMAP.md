@@ -13,7 +13,7 @@ Astraplex delivers a real-time internal messaging platform built on Elixir/Phoen
 Decimal phases appear between their surrounding integers in numeric order.
 
 - [x] **Phase 1: Engineering Quality** - Project scaffold, test harness, static analysis, git hooks, AI usage rules, and design system (completed 2026-03-10)
-- [ ] **Phase 2: AI Tooling** - Ash AI integration and MCP server exposing domains to AI agents
+- [ ] **Phase 2: AI Tooling** - MCP server exposing Ash domains as tools for Claude Code during development
 - [ ] **Phase 3: Foundation & Auth** - Admin-created user accounts, roles, authentication, and session management
 - [ ] **Phase 4: Channels** - Admin-managed invite-only channels with membership and message history
 - [ ] **Phase 5: Conversations** - User-initiated DMs (1:1) and ad-hoc group messages (2+)
@@ -44,17 +44,17 @@ Plans:
 - [ ] 01-03-PLAN.md -- Configure static analysis (Credo/Dialyxir), git hooks, and create CLAUDE.md conventions
 
 ### Phase 2: AI Tooling
-**Goal**: AI agents can interact with Ash domains through an MCP server, and Ash AI powers at least one in-app AI feature
+**Goal**: AI agents can interact with Ash domains through an MCP server during development, with a System/Health domain validating the pipeline end-to-end
 **Depends on**: Phase 1
 **Requirements**: AI-01, AI-02
 **Success Criteria** (what must be TRUE):
-  1. An AI agent (e.g., Claude) can connect to the MCP server and invoke Ash domain actions as tools
-  2. At least one Ash AI-powered feature is functional within the application (specific use case per research)
-**Plans**: TBD
+  1. An AI agent (Claude Code) can connect to the MCP server and invoke Ash domain actions as tools
+  2. The System/Health domain is accessible via MCP and returns valid health data
+  3. New domains added in future phases are auto-discovered by MCP with no config changes
+**Plans**: 1 plan
 
 Plans:
-- [ ] 02-01: TBD
-- [ ] 02-02: TBD
+- [ ] 02-01-PLAN.md -- Add ash_ai, create System/Health domain, wire MCP dev server, configure .mcp.json
 
 ### Phase 3: Foundation & Auth
 **Goal**: Admins can create and manage user accounts, and users can securely log in and maintain sessions
@@ -191,7 +191,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Engineering Quality | 1/3 | Complete    | 2026-03-10 |
-| 2. AI Tooling | 0/? | Not started | - |
+| 2. AI Tooling | 0/1 | Not started | - |
 | 3. Foundation & Auth | 0/? | Not started | - |
 | 4. Channels | 0/? | Not started | - |
 | 5. Conversations | 0/? | Not started | - |
