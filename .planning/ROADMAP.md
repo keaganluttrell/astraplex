@@ -12,7 +12,7 @@ Astraplex delivers a real-time internal messaging platform built on Elixir/Phoen
 
 Decimal phases appear between their surrounding integers in numeric order.
 
-- [ ] **Phase 1: Engineering Quality** - Project scaffold, test harness, static analysis, git hooks, AI usage rules, and design system
+- [x] **Phase 1: Engineering Quality** - Project scaffold, test harness, static analysis, git hooks, AI usage rules, and design system (completed 2026-03-10)
 - [ ] **Phase 2: AI Tooling** - Ash AI integration and MCP server exposing domains to AI agents
 - [ ] **Phase 3: Foundation & Auth** - Admin-created user accounts, roles, authentication, and session management
 - [ ] **Phase 4: Channels** - Admin-managed invite-only channels with membership and message history
@@ -190,7 +190,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Engineering Quality | 1/3 | Executing | - |
+| 1. Engineering Quality | 1/3 | Complete    | 2026-03-10 |
 | 2. AI Tooling | 0/? | Not started | - |
 | 3. Foundation & Auth | 0/? | Not started | - |
 | 4. Channels | 0/? | Not started | - |
