@@ -14,7 +14,7 @@ defmodule AstraplexWeb.DashboardLive do
         flash={@flash}
         current_user={@current_user}
         active_page={:home}
-        breadcrumb_path={[{"Astraplex", ~p"/"}, {"Home", nil}]}
+        breadcrumb_path={[{"Home", nil}]}
       >
         <.empty_state
           icon="hero-chat-bubble-left-right"
@@ -27,7 +27,7 @@ defmodule AstraplexWeb.DashboardLive do
         flash={@flash}
         current_user={@current_user}
         active_page={:home}
-        breadcrumb_path={[{"Astraplex", ~p"/"}, {"Home", nil}]}
+        breadcrumb_path={[{"Home", nil}]}
       >
         <.empty_state
           icon="hero-chat-bubble-left-right"

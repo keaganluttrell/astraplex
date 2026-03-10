@@ -100,7 +100,7 @@ defmodule AstraplexWeb.Admin.UserListLive do
       flash={@flash}
       current_user={@current_user}
       active_page={:admin}
-      breadcrumb_path={[{"Astraplex", ~p"/"}, {"Admin", ~p"/admin/users"}, {"Users", nil}]}
+      breadcrumb_path={[{"Admin", ~p"/admin/users"}, {"Users", nil}]}
     >
       <div class="p-6">
         <div class="flex justify-end mb-4">
