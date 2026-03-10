@@ -16,7 +16,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 2: AI Tooling** - MCP server exposing Ash domains as tools for Claude Code during development
 - [x] **Phase 3: Foundation & Auth** - Admin-created user accounts, roles, authentication, and session management (completed 2026-03-10)
 - [ ] **Phase 3.1: UI Patterns** - App shell layout, sidebar navigation, mobile dock, shared components (INSERTED)
-- [ ] **Phase 4: Channels** - Admin-managed invite-only channels with membership and message history
+- [x] **Phase 4: Channels** - Admin-managed invite-only channels with membership and message history (completed 2026-03-10)
 - [ ] **Phase 5: Conversations** - User-initiated DMs (1:1) and ad-hoc group messages (2+)
 - [ ] **Phase 6: Messaging Core** - Text and rich text messages, mentions, reactions, threading, and real-time delivery
 - [ ] **Phase 7: Presence & Indicators** - Online/offline status, typing indicators, unread counts, read receipts, and mute
@@ -107,9 +107,9 @@ Plans:
 **Plans**: 3 plans
 
 Plans:
-- [ ] 04-01-PLAN.md -- Messaging domain with Channel, Membership, Message resources, policies, PubSub, factories, and integration tests
-- [ ] 04-02-PLAN.md -- Admin channel management UI at /admin/channels with create/edit drawers, member management, and archive
-- [ ] 04-03-PLAN.md -- Channel chat view, sidebar integration with real channel data, and real-time PubSub messaging
+- [x] 04-01-PLAN.md -- Messaging domain with Channel, Membership, Message resources, policies, PubSub, factories, and integration tests
+- [x] 04-02-PLAN.md -- Admin channel management UI at /admin/channels with create/edit drawers, member management, and archive
+- [x] 04-03-PLAN.md -- Channel chat view, sidebar integration with real channel data, and real-time PubSub messaging
 
 ### Phase 5: Conversations
 **Goal**: Users can start 1:1 direct messages and ad-hoc group conversations, visible only to participants
@@ -217,7 +217,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 3.1 -> 4 -> 5 -> 6 -> 7 -> 8 -> 
 | 2. AI Tooling            | 1/2            | In progress | -          |
 | 3. Foundation & Auth     | 3/3            | Complete    | 2026-03-10 |
 | 3.1. UI Patterns         | 2/3            | In progress | -          |
-| 4. Channels              | 2/3 | In Progress|  |
+| 4. Channels              | 3/3            | Complete    | 2026-03-10 |
 | 5. Conversations         | 0/?            | Not started | -          |
 | 6. Messaging Core        | 0/?            | Not started | -          |
 | 7. Presence & Indicators | 0/?            | Not started | -          |
