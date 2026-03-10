@@ -111,20 +111,20 @@ defmodule AstraplexWeb.Layouts do
   def chat_layout(assigns) do
     ~H"""
     <div class={["flex flex-col h-full", @class]}>
-      <div class="flex items-center px-4 py-3 border-b border-base-300 shrink-0 max-w-3xl mx-auto w-full">
+      <div class="flex items-center px-4 py-3 border-b border-base-300 shrink-0 max-w-4xl mx-auto w-full">
         <h2 class="font-semibold">{@title}</h2>
         <div :if={@title_action != []} class="ml-auto">
           {render_slot(@title_action)}
         </div>
       </div>
       <div id="chat-scroll" phx-hook="ScrollBottom" class="flex-1 overflow-y-auto px-4 py-2">
-        <div class="max-w-3xl mx-auto flex flex-col justify-end min-h-full">
+        <div class="max-w-4xl mx-auto flex flex-col justify-end min-h-full">
           {render_slot(@inner_block)}
         </div>
       </div>
       <div
         :if={@input != []}
-        class="border-t border-base-300 px-4 py-3 shrink-0 max-w-3xl mx-auto w-full"
+        class="border-t border-base-300 px-4 py-3 shrink-0 max-w-4xl mx-auto w-full"
       >
         {render_slot(@input)}
       </div>

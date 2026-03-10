@@ -99,10 +99,7 @@ defmodule AstraplexWeb.Components.Messaging do
   end
 
   @doc """
-  Renders a single chat message with sender avatar and timestamp.
-
-  Own messages are aligned right with a primary background. Other messages
-  are aligned left with the default background.
+  Renders a single chat message in a stacked layout with avatar, name, timestamp, and body.
 
   ## Examples
 
@@ -112,24 +109,17 @@ defmodule AstraplexWeb.Components.Messaging do
   attr :current_user_id, :string, required: true
 
   def message_bubble(assigns) do
-    assigns =
-      assign(
-        assigns,
-        :own?,
-        to_string(assigns.message.sender.id) == to_string(assigns.current_user_id)
-      )
-
     ~H"""
-    <div class={["chat", if(@own?, do: "chat-end", else: "chat-start")]}>
-      <div class="chat-image">
+    <div class="flex gap-3 py-1.5 px-2 rounded-lg hover:bg-base-200/50">
+      <div class="shrink-0 pt-0.5">
         <.user_avatar user={@message.sender} size="sm" />
       </div>
-      <div class="chat-header text-xs text-base-content/60 mb-1">
-        {@message.sender.email}
-        <time class="text-xs text-base-content/40 ml-1">{format_time(@message.inserted_at)}</time>
-      </div>
-      <div class={["chat-bubble", if(@own?, do: "chat-bubble-primary", else: "")]}>
-        {@message.body}
+      <div class="min-w-0 flex-1">
+        <div class="flex items-baseline gap-2">
+          <span class="font-semibold text-sm">{@message.sender.email}</span>
+          <time class="text-xs text-base-content/40">{format_time(@message.inserted_at)}</time>
+        </div>
+        <p class="text-sm text-base-content/80 break-words">{@message.body}</p>
       </div>
     </div>
     """
