@@ -25,6 +25,17 @@ if config_env() != :test do
     http: [port: String.to_integer(System.get_env("PORT", "4000"))]
 end
 
+# AshAuthentication token signing secret (production)
+if config_env() == :prod do
+  config :astraplex,
+         :token_signing_secret,
+         System.get_env("ASTRAPLEX_TOKEN_SIGNING_SECRET") ||
+           raise("""
+           environment variable ASTRAPLEX_TOKEN_SIGNING_SECRET is missing.
+           You can generate one by calling: mix phx.gen.secret
+           """)
+end
+
 if config_env() == :prod do
   database_url =
     System.get_env("DATABASE_URL") ||

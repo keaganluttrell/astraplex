@@ -91,6 +91,9 @@ config :phoenix_live_view,
 # Disable swoosh api client as it is only required for production adapters.
 config :swoosh, :api_client, false
 
+# AshAuthentication token signing secret (dev only, not for production)
+config :astraplex, :token_signing_secret, "dev-only-secret-at-least-32-bytes-long!!"
+
 if Mix.env() == :dev do
   config :git_hooks,
     auto_install: true,

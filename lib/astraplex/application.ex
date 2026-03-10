@@ -12,8 +12,7 @@ defmodule Astraplex.Application do
       Astraplex.Repo,
       {DNSCluster, query: Application.get_env(:astraplex, :dns_cluster_query) || :ignore},
       {Phoenix.PubSub, name: Astraplex.PubSub},
-      # Start a worker by calling: Astraplex.Worker.start_link(arg)
-      # {Astraplex.Worker, arg},
+      {AshAuthentication.Supervisor, otp_app: :astraplex},
       # Start to serve requests, typically the last entry
       AstraplexWeb.Endpoint
     ]

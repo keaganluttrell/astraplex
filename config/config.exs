@@ -61,7 +61,7 @@ config :logger, :default_formatter,
 config :phoenix, :json_library, Jason
 
 # Ash Framework configuration
-config :astraplex, ash_domains: [Astraplex.System]
+config :astraplex, ash_domains: [Astraplex.Accounts, Astraplex.System]
 config :ash, :default_belongs_to_type, :uuid
 
 # Import environment specific config. This must remain at the bottom

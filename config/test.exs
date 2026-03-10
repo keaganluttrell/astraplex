@@ -49,3 +49,9 @@ config :phoenix_test, otp_app: :astraplex
 
 # Enable Ecto SQL sandbox for E2E browser tests
 config :astraplex, :sql_sandbox, true
+
+# AshAuthentication token signing secret (test only)
+config :astraplex, :token_signing_secret, "test-only-secret-at-least-32-bytes-long!!"
+
+# Fast bcrypt hashing for tests (pitfall 3 from research)
+config :bcrypt_elixir, log_rounds: 1
