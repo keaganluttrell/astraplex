@@ -3,6 +3,10 @@
     "astraplex": {
       "command": "npx",
       "args": ["-y", "mcp-remote", "http://localhost:4000/mcp"]
+    },
+    "astraplex-dev": {
+      "command": "npx",
+      "args": ["-y", "mcp-remote", "http://localhost:4000/ash_ai/mcp"]
     }
   }
 }
