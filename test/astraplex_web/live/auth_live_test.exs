@@ -1,11 +1,12 @@
 defmodule AstraplexWeb.AuthLiveTest do
   @moduledoc false
-  use AstraplexWeb.ConnCase, async: true
+  use AstraplexWeb.ConnCase, async: false
+
+  import Phoenix.LiveViewTest
 
   describe "unauthenticated access" do
     test "redirects / to /sign-in", %{conn: conn} do
-      conn = get(conn, ~p"/")
-      assert redirected_to(conn) =~ "/sign-in"
+      assert {:error, {:redirect, %{to: "/sign-in"}}} = live(conn, ~p"/")
     end
   end
 
@@ -15,11 +16,11 @@ defmodule AstraplexWeb.AuthLiveTest do
     end
 
     test "authenticated user can visit /", %{conn: conn} do
-      conn = get(conn, ~p"/")
-      assert html_response(conn, 200) =~ "Welcome to Astraplex"
+      {:ok, _lv, html} = live(conn, ~p"/")
+      assert html =~ "Welcome to Astraplex"
     end
 
-    test "sign out via DELETE /sign-out redirects to /sign-in", %{conn: conn} do
+    test "sign out via GET /sign-out redirects to /sign-in", %{conn: conn} do
       conn = get(conn, ~p"/sign-out")
       assert redirected_to(conn) =~ "/sign-in"
     end
@@ -31,8 +32,7 @@ defmodule AstraplexWeb.AuthLiveTest do
     end
 
     test "staff user visiting /admin/users is redirected to /", %{conn: conn} do
-      conn = get(conn, ~p"/admin/users")
-      assert redirected_to(conn) == "/"
+      assert {:error, {:redirect, %{to: "/"}}} = live(conn, ~p"/admin/users")
     end
   end
 end

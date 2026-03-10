@@ -36,6 +36,7 @@ defmodule Astraplex.Accounts.User do
       enabled?(true)
       token_resource(Astraplex.Accounts.Token)
       require_token_presence_for_authentication?(true)
+      store_all_tokens?(true)
 
       signing_secret(fn _, _ ->
         Application.fetch_env(:astraplex, :token_signing_secret)
