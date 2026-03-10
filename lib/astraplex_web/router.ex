@@ -30,6 +30,7 @@ defmodule AstraplexWeb.Router do
     pipe_through :browser
 
     ash_authentication_live_session :authenticated,
+      layout: {AstraplexWeb.Layouts, :app},
       on_mount: [{AstraplexWeb.LiveAuth, :require_authenticated_user}] do
       live "/", DashboardLive, :index
     end
@@ -40,6 +41,7 @@ defmodule AstraplexWeb.Router do
     pipe_through :browser
 
     ash_authentication_live_session :admin,
+      layout: {AstraplexWeb.Layouts, :app},
       on_mount: [{AstraplexWeb.LiveAuth, :require_admin}] do
       live "/users", UserListLive, :index
       live "/users/new", UserListLive, :new

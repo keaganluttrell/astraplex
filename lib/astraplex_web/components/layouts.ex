@@ -1,74 +1,112 @@
 defmodule AstraplexWeb.Layouts do
   @moduledoc """
-  This module holds layouts and related functionality
-  used by your application.
+  Layout function components for Astraplex.
+
+  Provides role-based shell layouts (admin_shell, staff_shell) that compose
+  a shared base shell with top bar, sidebar, flash messages, and user dropdown.
+
+  ## Usage in LiveViews
+
+      def render(assigns) do
+        ~H\"\"\"
+        <Layouts.admin_shell flash={@flash} current_user={@current_user} active_page={:admin}>
+          <.page_header title="User Management" />
+          <%-- page content --%>
+        </Layouts.admin_shell>
+        \"\"\"
+      end
   """
   use AstraplexWeb, :html
 
-  # Embed all files in layouts/* within this module.
-  # The default root.html.heex file contains the HTML
-  # skeleton of your application, namely HTML headers
-  # and other static content.
   embed_templates "layouts/*"
 
+  # -- Public shell layouts --
+
   @doc """
-  Renders your app layout.
+  Renders the admin shell layout with sidebar showing the Admin link.
 
-  This function is typically invoked from every template,
-  and it often contains your application menu, sidebar,
-  or similar.
-
-  ## Examples
-
-      <Layouts.app flash={@flash}>
-        <h1>Content</h1>
-      </Layouts.app>
-
+  Accepts `active_page` to highlight the corresponding sidebar nav item.
   """
-  attr :flash, :map, required: true, doc: "the map of flash messages"
+  attr :flash, :map, required: true
+  attr :current_user, :map, required: true
+  attr :active_page, :atom, default: nil
+  slot :inner_block, required: true
+
+  def admin_shell(assigns) do
+    ~H"""
+    <.base_shell flash={@flash} current_user={@current_user}>
+      <.app_sidebar
+        current_user={@current_user}
+        role={:admin}
+        active_page={@active_page}
+        class="hidden md:flex"
+      />
+      <main class="flex-1 overflow-y-auto pb-16 md:pb-0">
+        {render_slot(@inner_block)}
+      </main>
+    </.base_shell>
+    """
+  end
+
+  @doc """
+  Renders the staff shell layout with sidebar hiding the Admin link.
+
+  Accepts `active_page` to highlight the corresponding sidebar nav item.
+  """
+  attr :flash, :map, required: true
+  attr :current_user, :map, required: true
+  attr :active_page, :atom, default: nil
+  slot :inner_block, required: true
+
+  def staff_shell(assigns) do
+    ~H"""
+    <.base_shell flash={@flash} current_user={@current_user}>
+      <.app_sidebar
+        current_user={@current_user}
+        role={:staff}
+        active_page={@active_page}
+        class="hidden md:flex"
+      />
+      <main class="flex-1 overflow-y-auto pb-16 md:pb-0">
+        {render_slot(@inner_block)}
+      </main>
+    </.base_shell>
+    """
+  end
+
+  @doc """
+  Temporary bridge layout that delegates to staff_shell.
+
+  This layout is set on live_sessions in the router. It receives `@inner_content`
+  (not `@inner_block`) because it is invoked as a layout, not a function component.
+  Plan 02 will update all LiveViews to call shell functions directly.
+  """
+  attr :flash, :map, required: true
+  attr :current_user, :map, default: nil
 
   attr :current_scope, :map,
     default: nil,
-    doc: "the current [scope](https://hexdocs.pm/phoenix/scopes.html)"
-
-  slot :inner_block, required: true
+    doc: "the current scope (kept for backward compatibility)"
 
   def app(assigns) do
     ~H"""
-    <header class="navbar px-4 sm:px-6 lg:px-8">
-      <div class="flex-1">
-        <a href="/" class="flex-1 flex w-fit items-center gap-2">
-          <img src={~p"/images/logo.svg"} width="36" />
-          <span class="text-sm font-semibold">v{Application.spec(:phoenix, :vsn)}</span>
-        </a>
-      </div>
-      <div class="flex-none">
-        <ul class="flex flex-column px-1 space-x-4 items-center">
-          <li>
-            <a href="https://phoenixframework.org/" class="btn btn-ghost">Website</a>
-          </li>
-          <li>
-            <a href="https://github.com/phoenixframework/phoenix" class="btn btn-ghost">GitHub</a>
-          </li>
-          <li>
-            <.theme_toggle />
-          </li>
-          <li>
-            <a href="https://hexdocs.pm/phoenix/overview.html" class="btn btn-primary">
-              Get Started <span aria-hidden="true">&rarr;</span>
-            </a>
-          </li>
-        </ul>
-      </div>
-    </header>
-
-    <main class="px-4 py-20 sm:px-6 lg:px-8">
-      <div class="mx-auto max-w-2xl space-y-4">
-        {render_slot(@inner_block)}
-      </div>
-    </main>
-
-    <.flash_group flash={@flash} />
+    <%= cond do %>
+      <% is_map(@current_user) and Map.get(@current_user, :role) == :admin -> %>
+        <.admin_shell flash={@flash} current_user={@current_user}>
+          {@inner_content}
+        </.admin_shell>
+      <% is_map(@current_user) -> %>
+        <.staff_shell flash={@flash} current_user={@current_user}>
+          {@inner_content}
+        </.staff_shell>
+      <% true -> %>
+        <main class="px-4 py-20 sm:px-6 lg:px-8">
+          <div class="mx-auto max-w-2xl space-y-4">
+            {@inner_content}
+          </div>
+        </main>
+        <.flash_group flash={@flash} />
+    <% end %>
     """
   end
 
@@ -106,6 +144,127 @@ defmodule AstraplexWeb.Layouts do
         <.icon name="hero-moon-micro" class="size-4 opacity-75 hover:opacity-100" />
       </button>
     </div>
+    """
+  end
+
+  # -- Private components --
+
+  attr :flash, :map, required: true
+  attr :current_user, :map, required: true
+  slot :inner_block, required: true
+
+  defp base_shell(assigns) do
+    ~H"""
+    <.top_bar />
+    <div class="flex h-[calc(100vh-4rem)]">
+      {render_slot(@inner_block)}
+    </div>
+    <.flash_group flash={@flash} />
+    """
+  end
+
+  defp top_bar(assigns) do
+    ~H"""
+    <.navbar class="bg-base-100 border-b border-base-300 px-4 h-16 shrink-0">
+      <:navbar_start>
+        <.link navigate={~p"/"} class="text-xl font-bold">Astraplex</.link>
+      </:navbar_start>
+      <:navbar_end>
+        <input
+          type="text"
+          placeholder="Search..."
+          class="input input-bordered input-sm w-48 hidden md:block"
+          disabled
+        />
+      </:navbar_end>
+    </.navbar>
+    """
+  end
+
+  attr :current_user, :map, required: true
+  attr :role, :atom, required: true, values: [:admin, :staff]
+  attr :active_page, :atom, default: nil
+  attr :class, :string, default: ""
+
+  defp app_sidebar(assigns) do
+    ~H"""
+    <aside class={[
+      "w-64 bg-base-200 border-r border-base-300 flex flex-col overflow-y-auto overflow-x-hidden",
+      @class
+    ]}>
+      <%!-- Navigation links --%>
+      <ul class="menu">
+        <li>
+          <.link navigate={~p"/"} class={@active_page == :home && "menu-active"}>
+            <.icon name="hero-home" class="size-5" /> Home
+          </.link>
+        </li>
+        <li :if={@role == :admin}>
+          <.link navigate={~p"/admin/users"} class={@active_page == :admin && "menu-active"}>
+            <.icon name="hero-shield-check" class="size-5" /> Admin
+          </.link>
+        </li>
+      </ul>
+
+      <div class="divider my-1 px-3"></div>
+
+      <%!-- Collapsible messaging sections --%>
+      <.sidebar_group title="Channels" placeholder="(No channels yet)" />
+      <.sidebar_group title="Direct Messages" placeholder="(No conversations yet)" />
+      <.sidebar_group title="Groups" placeholder="(No groups yet)" />
+
+      <%!-- User info area --%>
+      <div class="mt-auto border-t border-base-300 p-3">
+        <.dropdown direction="top" align="end" class="w-full">
+          <div
+            tabindex="0"
+            role="button"
+            class="flex items-center gap-2 rounded-lg p-2 hover:bg-base-300 cursor-pointer w-full"
+          >
+            <.user_avatar user={@current_user} size="sm" />
+            <span class="flex-1 truncate text-sm">{@current_user.email}</span>
+            <.icon name="hero-chevron-up-micro" class="size-4 opacity-50" />
+          </div>
+          <div
+            tabindex="0"
+            class="dropdown-content bg-base-100 rounded-box z-[1] w-60 p-3 shadow-lg mb-2"
+          >
+            <div class="mb-3">
+              <.theme_toggle />
+            </div>
+            <ul class="menu menu-sm p-0">
+              <li>
+                <.link href={~p"/sign-out"} class="text-error">
+                  <.icon name="hero-arrow-right-on-rectangle" class="size-4" /> Sign Out
+                </.link>
+              </li>
+            </ul>
+          </div>
+        </.dropdown>
+      </div>
+    </aside>
+    """
+  end
+
+  attr :title, :string, required: true
+  attr :placeholder, :string, required: true
+
+  defp sidebar_group(assigns) do
+    ~H"""
+    <details open class="group px-2">
+      <summary class="flex items-center justify-between px-3 py-2 cursor-pointer text-sm font-semibold text-base-content/70 hover:text-base-content list-none">
+        {@title}
+        <.icon
+          name="hero-chevron-down-micro"
+          class="size-4 transition-transform group-open:rotate-180"
+        />
+      </summary>
+      <ul class="menu menu-sm pl-2">
+        <li class="disabled">
+          <span class="text-base-content/40 text-xs">{@placeholder}</span>
+        </li>
+      </ul>
+    </details>
     """
   end
 end
