@@ -96,14 +96,16 @@ defmodule AstraplexWeb.Admin.UserListLive do
 
   def render(assigns) do
     ~H"""
-    <Layouts.admin_shell flash={@flash} current_user={@current_user} active_page={:admin}>
-      <.page_header title="User Management">
-        <:actions>
-          <.link navigate={~p"/admin/users/new"} class="btn btn-primary btn-sm">New User</.link>
-        </:actions>
-      </.page_header>
-
+    <Layouts.admin_shell
+      flash={@flash}
+      current_user={@current_user}
+      active_page={:admin}
+      breadcrumb_path={[{"Astraplex", ~p"/"}, {"Admin", ~p"/admin/users"}, {"Users", nil}]}
+    >
       <div class="p-6">
+        <div class="flex justify-end mb-4">
+          <.link navigate={~p"/admin/users/new"} class="btn btn-primary btn-sm">New User</.link>
+        </div>
         <.table id="users" rows={@users} row_id={fn user -> "user-#{user.id}" end}>
           <:col :let={user} label="Email">{user.email}</:col>
           <:col :let={user} label="Role"><.role_badge role={user.role} /></:col>
@@ -200,7 +202,9 @@ defmodule AstraplexWeb.Admin.UserListLive do
   end
 
   defp load_users(socket) do
-    Ash.read!(User, actor: socket.assigns.current_user)
+    User
+    |> Ash.read!(actor: socket.assigns.current_user)
+    |> Enum.sort_by(& &1.email)
   end
 
   defp role_label(:admin), do: "Admin"

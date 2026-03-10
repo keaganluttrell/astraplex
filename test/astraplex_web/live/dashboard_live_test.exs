@@ -24,9 +24,10 @@ defmodule AstraplexWeb.DashboardLiveTest do
       assert html =~ "/admin/users"
     end
 
-    test "dashboard shows Home page header", %{conn: conn} do
+    test "dashboard shows breadcrumb with Home", %{conn: conn} do
       {:ok, _lv, html} = live(conn, ~p"/")
 
+      assert html =~ "breadcrumbs"
       assert html =~ "Home"
     end
 
@@ -59,9 +60,10 @@ defmodule AstraplexWeb.DashboardLiveTest do
       refute html =~ "/admin/users"
     end
 
-    test "staff dashboard shows Home page header and welcome", %{conn: conn} do
+    test "staff dashboard shows breadcrumb and welcome", %{conn: conn} do
       {:ok, _lv, html} = live(conn, ~p"/")
 
+      assert html =~ "breadcrumbs"
       assert html =~ "Home"
       assert html =~ "Welcome to Astraplex"
     end

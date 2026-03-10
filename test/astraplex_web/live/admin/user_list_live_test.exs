@@ -18,16 +18,16 @@ defmodule AstraplexWeb.Admin.UserListLiveTest do
       assert html =~ "hero-shield-check"
     end
 
-    test "shows User Management page header", %{conn: conn} do
+    test "shows breadcrumb navigation in top bar", %{conn: conn} do
       {:ok, _view, html} = live(conn, ~p"/admin/users")
 
-      assert html =~ "User Management"
+      assert html =~ "breadcrumbs"
+      assert html =~ "Users"
     end
 
     test "shows user table with email, role, and status columns", %{conn: conn} do
       {:ok, _view, html} = live(conn, ~p"/admin/users")
 
-      assert html =~ "User Management"
       assert html =~ "Email"
       assert html =~ "Role"
       assert html =~ "Status"
@@ -155,6 +155,43 @@ defmodule AstraplexWeb.Admin.UserListLiveTest do
       {:ok, _view, html} = live(conn, ~p"/admin/users")
 
       assert html =~ "Deactivated"
+    end
+
+    test "user list maintains sort order after role change", %{conn: conn} do
+      {:ok, hashed} = AshAuthentication.BcryptProvider.hash("ValidPassword123!")
+
+      user_a =
+        Ash.Seed.seed!(User, %{
+          email: "aaa@example.com",
+          hashed_password: hashed,
+          role: :staff,
+          status: :active
+        })
+
+      _user_z =
+        Ash.Seed.seed!(User, %{
+          email: "zzz@example.com",
+          hashed_password: hashed,
+          role: :staff,
+          status: :active
+        })
+
+      {:ok, view, html} = live(conn, ~p"/admin/users")
+
+      # Verify initial order: aaa before zzz
+      aaa_pos = :binary.match(html, "aaa@example.com") |> elem(0)
+      zzz_pos = :binary.match(html, "zzz@example.com") |> elem(0)
+      assert aaa_pos < zzz_pos
+
+      # Change role on first user
+      view |> element("[phx-click='change_role'][phx-value-id='#{user_a.id}']") |> render_click()
+
+      html = render(view)
+
+      # Order should still be: aaa before zzz
+      aaa_pos = :binary.match(html, "aaa@example.com") |> elem(0)
+      zzz_pos = :binary.match(html, "zzz@example.com") |> elem(0)
+      assert aaa_pos < zzz_pos
     end
 
     test "admin can reactivate a deactivated user", %{conn: conn} do

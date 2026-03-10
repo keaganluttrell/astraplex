@@ -10,8 +10,12 @@ defmodule AstraplexWeb.DashboardLive do
   def render(assigns) do
     ~H"""
     <%= if @current_user.role == :admin do %>
-      <Layouts.admin_shell flash={@flash} current_user={@current_user} active_page={:home}>
-        <.page_header title="Home" />
+      <Layouts.admin_shell
+        flash={@flash}
+        current_user={@current_user}
+        active_page={:home}
+        breadcrumb_path={[{"Astraplex", ~p"/"}, {"Home", nil}]}
+      >
         <.empty_state
           icon="hero-chat-bubble-left-right"
           title="Welcome to Astraplex"
@@ -19,8 +23,12 @@ defmodule AstraplexWeb.DashboardLive do
         />
       </Layouts.admin_shell>
     <% else %>
-      <Layouts.staff_shell flash={@flash} current_user={@current_user} active_page={:home}>
-        <.page_header title="Home" />
+      <Layouts.staff_shell
+        flash={@flash}
+        current_user={@current_user}
+        active_page={:home}
+        breadcrumb_path={[{"Astraplex", ~p"/"}, {"Home", nil}]}
+      >
         <.empty_state
           icon="hero-chat-bubble-left-right"
           title="Welcome to Astraplex"
