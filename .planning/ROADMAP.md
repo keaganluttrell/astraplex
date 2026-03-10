@@ -13,8 +13,9 @@ Astraplex delivers a real-time internal messaging platform built on Elixir/Phoen
 Decimal phases appear between their surrounding integers in numeric order.
 
 - [x] **Phase 1: Engineering Quality** - Project scaffold, test harness, static analysis, git hooks, AI usage rules, and design system (completed 2026-03-10)
-- [ ] **Phase 2: AI Tooling** - MCP server exposing Ash domains as tools for Claude Code during development
+- [x] **Phase 2: AI Tooling** - MCP server exposing Ash domains as tools for Claude Code during development
 - [x] **Phase 3: Foundation & Auth** - Admin-created user accounts, roles, authentication, and session management (completed 2026-03-10)
+- [ ] **Phase 3.1: UI Patterns** - App shell layout, sidebar navigation, mobile dock, shared components (INSERTED)
 - [ ] **Phase 4: Channels** - Admin-managed invite-only channels with membership and message history
 - [ ] **Phase 5: Conversations** - User-initiated DMs (1:1) and ad-hoc group messages (2+)
 - [ ] **Phase 6: Messaging Core** - Text and rich text messages, mentions, reactions, threading, and real-time delivery
@@ -73,6 +74,24 @@ Plans:
 - [ ] 03-01-PLAN.md -- Accounts domain with User/Token resources, AshAuthentication, admin CRUD actions, and negative auth tests
 - [ ] 03-02-PLAN.md -- Auth web layer: sign-in LiveView, auth controller, LiveAuth hooks, router with protected scopes
 - [ ] 03-03-PLAN.md -- Admin user management UI at /admin/users, bootstrap mix task, and dev seeds
+
+### Phase 03.1: UI Patterns (INSERTED)
+
+**Goal:** The app has a real messaging-app shell with role-based layouts, sidebar navigation, mobile dock, shared UI components, and established page-level view patterns that all feature phases build on
+**Requirements**: UI-01, UI-04
+**Depends on:** Phase 3
+**Success Criteria** (what must be TRUE):
+  1. Admin and staff users see a 2-panel layout with fixed sidebar and main content area on desktop
+  2. Mobile users see a bottom dock with Home, Inbox, Apps, Create navigation instead of sidebar
+  3. Sidebar shows Home link, Admin link (admin-only), collapsible Channels/DMs/Groups sections, and user dropdown with sign out and theme toggle
+  4. All existing pages (dashboard, admin users) render inside the new shell chrome
+  5. Shared UI components (page header, empty state, avatar, skeletons) are available for all future phases
+  6. Chat layout pattern is established as a reusable component for messaging phases
+**Plans:** 2 plans
+
+Plans:
+- [ ] 03.1-01-PLAN.md -- Shared UI components module and role-based shell layouts (top bar, sidebar, user dropdown)
+- [ ] 03.1-02-PLAN.md -- Mobile dock, bottom sheet, chat layout, wire existing LiveViews into new shells
 
 ### Phase 4: Channels
 **Goal**: Admins can create invite-only channels, manage membership, and members can view their channels with full message history
@@ -188,17 +207,18 @@ Plans:
 ## Progress
 
 **Execution Order:**
-Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10
+Phases execute in numeric order: 1 -> 2 -> 3 -> 3.1 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10
 
-| Phase | Plans Complete | Status | Completed |
-|-------|----------------|--------|-----------|
-| 1. Engineering Quality | 3/3 | Complete    | 2026-03-10 |
-| 2. AI Tooling | 1/2 | In progress | - |
-| 3. Foundation & Auth | 3/3 | Complete   | 2026-03-10 |
-| 4. Channels | 0/? | Not started | - |
-| 5. Conversations | 0/? | Not started | - |
-| 6. Messaging Core | 0/? | Not started | - |
-| 7. Presence & Indicators | 0/? | Not started | - |
-| 8. Notifications | 0/? | Not started | - |
-| 9. Administration | 0/? | Not started | - |
-| 10. UI & PWA | 0/? | Not started | - |
+| Phase                    | Plans Complete | Status      | Completed  |
+| ------------------------ | -------------- | ----------- | ---------- |
+| 1. Engineering Quality   | 3/3            | Complete    | 2026-03-10 |
+| 2. AI Tooling            | 1/2            | In progress | -          |
+| 3. Foundation & Auth     | 3/3            | Complete    | 2026-03-10 |
+| 3.1. UI Patterns         | 0/2            | Not started | -          |
+| 4. Channels              | 0/?            | Not started | -          |
+| 5. Conversations         | 0/?            | Not started | -          |
+| 6. Messaging Core        | 0/?            | Not started | -          |
+| 7. Presence & Indicators | 0/?            | Not started | -          |
+| 8. Notifications         | 0/?            | Not started | -          |
+| 9. Administration        | 0/?            | Not started | -          |
+| 10. UI & PWA             | 0/?            | Not started | -          |
