@@ -134,7 +134,7 @@ defmodule Astraplex.Accounts.User do
     end
 
     policy action(:read) do
-      authorize_if(expr(^actor(:role) == :admin))
+      authorize_if(actor_present())
     end
 
     policy action(:get_by_email) do

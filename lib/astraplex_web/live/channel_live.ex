@@ -104,7 +104,7 @@ defmodule AstraplexWeb.ChannelLive do
             <span>This channel has been archived.</span>
           </div>
         <% else %>
-          <form phx-submit="send_message" class="flex gap-2">
+          <form phx-submit="send_message" phx-hook="ClearInput" id="message-form" class="flex gap-2">
             <input
               type="text"
               name="body"
