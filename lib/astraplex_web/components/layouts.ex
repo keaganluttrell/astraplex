@@ -175,14 +175,12 @@ defmodule AstraplexWeb.Layouts do
     ~H"""
     <.navbar class="bg-base-100 border-b border-base-300 px-4 h-16 shrink-0">
       <:navbar_start>
-        <.breadcrumb :if={@breadcrumb_path != []} path={@breadcrumb_path} />
-        <.link
-          :if={@breadcrumb_path == []}
-          navigate={~p"/"}
-          class="flex items-center gap-2 text-xl font-bold"
-        >
-          <.brand_icon class="size-6 text-primary" /> Astraplex
-        </.link>
+        <div class="flex items-center gap-3">
+          <.link navigate={~p"/"} class="flex items-center gap-2 text-xl font-bold shrink-0">
+            <.brand_icon class="size-6 text-primary" /> Astraplex
+          </.link>
+          <.breadcrumb :if={@breadcrumb_path != []} path={@breadcrumb_path} />
+        </div>
       </:navbar_start>
       <:navbar_end>
         <input
