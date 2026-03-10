@@ -92,9 +92,9 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### UI & Design
 
-- [ ] **UI-01**: Mobile-first responsive layout (single-panel on mobile, multi-panel on desktop)
+- [x] **UI-01**: Mobile-first responsive layout (single-panel on mobile, multi-panel on desktop)
 - [ ] **UI-03**: PWA — installable on home screen with app-like experience
-- [ ] **UI-04**: Sidebar navigation for channels, DMs, and group conversations
+- [x] **UI-04**: Sidebar navigation for channels, DMs, and group conversations
 
 ## v2 Requirements
 
@@ -203,7 +203,7 @@ Which phases cover which requirements. Updated during roadmap creation.
 | ADMN-02 | Phase 9: Administration | Pending |
 | ADMN-03 | Phase 9: Administration | Pending |
 | ADMN-04 | Phase 9: Administration | Pending |
-| UI-01 | Phase 10: UI & PWA | Pending |
+| UI-01 | Phase 10: UI & PWA | Complete |
 | UI-03 | Phase 10: UI & PWA | Pending |
 | UI-04 | Phase 3.1: UI Patterns / Phase 10: UI & PWA | Partial (sidebar scaffold) |
 

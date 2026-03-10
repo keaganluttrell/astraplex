@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: in_progress
-stopped_at: Completed 03.1-01 (App Shell & Shared Components)
-last_updated: "2026-03-10T14:47:01Z"
-last_activity: 2026-03-10 -- Completed Plan 03.1-01 (App Shell & Shared Components)
+stopped_at: Completed 03.1-02 (Mobile Dock, Shell Wiring & Chat Layout)
+last_updated: "2026-03-10T14:55:30.025Z"
+last_activity: 2026-03-10 -- Completed Plan 03.1-02 (Mobile Dock, Shell Wiring & Chat Layout)
 progress:
   total_phases: 11
-  completed_phases: 3
-  total_plans: 9
-  completed_plans: 9
-  percent: 35
+  completed_phases: 4
+  total_plans: 10
+  completed_plans: 10
+  percent: 38
 ---
 
 # Project State
@@ -25,19 +25,19 @@ See: .planning/PROJECT.md (updated 2026-03-09)
 
 ## Current Position
 
-Phase: 3.1 of 10 (UI Patterns) -- IN PROGRESS
-Plan: 1 of 1 in current phase
-Status: Plan 03.1-01 Complete
-Last activity: 2026-03-10 -- Completed Plan 03.1-01 (App Shell & Shared Components)
+Phase: 3.1 of 10 (UI Patterns) -- COMPLETE
+Plan: 2 of 2 in current phase
+Status: Plan 03.1-02 Complete
+Last activity: 2026-03-10 -- Completed Plan 03.1-02 (Mobile Dock, Shell Wiring & Chat Layout)
 
-Progress: [████░░░░░░] 35%
+Progress: [████░░░░░░] 38%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 9
+- Total plans completed: 10
 - Average duration: 7 min
-- Total execution time: 0.95 hours
+- Total execution time: 1.02 hours
 
 **By Phase:**
 
@@ -46,10 +46,10 @@ Progress: [████░░░░░░] 35%
 | 1. Engineering Quality | 3/3 | 10 min | 5 min |
 | 2. AI Tooling | 2/2 | 13 min | 7 min |
 | 3. Foundation & Auth | 3/5 | 22 min | 7 min |
-| 3.1 UI Patterns | 1/1 | 6 min | 6 min |
+| 3.1 UI Patterns | 2/2 | 10 min | 5 min |
 
 **Recent Trend:**
-- Last 5 plans: 02-02 (1 min), 03-01 (6 min), 03-02 (11 min), 03-03 (5 min), 03.1-01 (6 min)
+- Last 5 plans: 03-01 (6 min), 03-02 (11 min), 03-03 (5 min), 03.1-01 (6 min), 03.1-02 (4 min)
 - Trend: Consistent
 
 *Updated after each plan completion*
@@ -94,6 +94,10 @@ Recent decisions affecting current work:
 - [03.1-01]: Set layout: on live_sessions in router to enable app layout rendering
 - [03.1-01]: HTML details/summary for collapsible sidebar groups (CSS-only, no JS)
 - [03.1-01]: DaisyUI dropdown with direction=top for user info dropdown at sidebar bottom
+- [03.1-02]: LiveViews call shell functions directly in render/1 instead of router layout option
+- [03.1-02]: layout: false on live_sessions prevents double-wrapping by Phoenix app layout
+- [03.1-02]: DaisyUI dock CSS class for mobile navigation (no DaisyUIComponents dock component)
+- [03.1-02]: DaisyUIComponents modal with modal-bottom class for apps bottom sheet
 
 ### Roadmap Evolution
 
@@ -110,6 +114,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-10T14:47:01Z
-Stopped at: Completed 03.1-01 (App Shell & Shared Components)
-Resume file: .planning/phases/03.1-ui-patterns/03.1-01-SUMMARY.md
+Last session: 2026-03-10T14:54:18Z
+Stopped at: Completed 03.1-02 (Mobile Dock, Shell Wiring & Chat Layout)
+Resume file: .planning/phases/03.1-ui-patterns/03.1-02-SUMMARY.md
