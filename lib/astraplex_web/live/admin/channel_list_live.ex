@@ -11,6 +11,7 @@ defmodule AstraplexWeb.Admin.ChannelListLive do
     {:ok,
      socket
      |> assign(:channels, load_channels(socket))
+     |> assign(:sidebar_channels, load_sidebar_channels(socket))
      |> assign(:users, load_users(socket))
      |> assign(:channel_form, nil)
      |> assign(:selected_channel, nil)
@@ -94,6 +95,7 @@ defmodule AstraplexWeb.Admin.ChannelListLive do
          socket
          |> put_flash(:info, "Channel saved successfully.")
          |> assign(:channels, load_channels(socket))
+         |> assign(:sidebar_channels, load_sidebar_channels(socket))
          |> push_navigate(to: redirect_path)}
 
       {:error, form} ->
@@ -199,7 +201,7 @@ defmodule AstraplexWeb.Admin.ChannelListLive do
       flash={@flash}
       current_user={@current_user}
       active_page={:admin}
-      channels={@channels}
+      channels={@sidebar_channels}
       breadcrumb_path={[{"Admin", ~p"/admin/users"}, {"Channels", nil}]}
     >
       <div class="p-6">
@@ -406,6 +408,14 @@ defmodule AstraplexWeb.Admin.ChannelListLive do
     |> Enum.reject(&MapSet.member?(member_ids, &1.id))
     |> Enum.filter(fn user ->
       search == "" or String.contains?(String.downcase(user.email), String.downcase(search))
+    end)
+  end
+
+  defp load_sidebar_channels(socket) do
+    Channel
+    |> Ash.read!(action: :list_for_user, actor: socket.assigns.current_user)
+    |> Enum.map(fn c ->
+      %{id: to_string(c.id), label: "#" <> to_string(c.name), url: ~p"/channels/#{c.id}"}
     end)
   end
 
