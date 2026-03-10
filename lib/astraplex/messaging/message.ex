@@ -1,5 +1,5 @@
 defmodule Astraplex.Messaging.Message do
-  @moduledoc "Message resource for channel messaging with sender tracking."
+  @moduledoc "Message resource for channel and conversation messaging with sender tracking."
 
   use Ash.Resource,
     data_layer: AshPostgres.DataLayer,
@@ -47,7 +47,7 @@ defmodule Astraplex.Messaging.Message do
     end
 
     policy action(:send_conversation_message) do
-      authorize_if(actor_present())
+      authorize_if(Astraplex.Messaging.Checks.CanSendToConversation)
     end
 
     policy action(:read) do
@@ -62,6 +62,25 @@ defmodule Astraplex.Messaging.Message do
     prefix("channel")
 
     publish(:send_message, ["messages", :channel_id])
+  end
+
+  changes do
+    change(
+      fn changeset, _context ->
+        Ash.Changeset.after_action(changeset, fn _changeset, message ->
+          if message.conversation_id do
+            AstraplexWeb.Endpoint.broadcast(
+              "conversation:messages:#{message.conversation_id}",
+              "new_message",
+              %{message: message}
+            )
+          end
+
+          {:ok, message}
+        end)
+      end,
+      on: [:create]
+    )
   end
 
   postgres do
