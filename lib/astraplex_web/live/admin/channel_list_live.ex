@@ -199,41 +199,34 @@ defmodule AstraplexWeb.Admin.ChannelListLive do
       channels={@channels}
       breadcrumb_path={[{"Admin", ~p"/admin/users"}, {"Channels", nil}]}
     >
-      <.drawer
-        selector_id="channel-drawer"
-        open={@channel_form != nil}
-        end
-      >
-        <:drawer_content>
-          <div class="p-6">
-            <div class="flex justify-end mb-4">
-              <button phx-click="new_channel" class="btn btn-primary btn-sm">New Channel</button>
-            </div>
-
-            <.channel_table :if={@channels != []} channels={@channels} />
-            <.empty_state
-              :if={@channels == []}
-              icon="hero-hashtag"
-              title="No channels yet"
-              description="Create your first channel to get started."
-            />
+      <div class="flex flex-1 overflow-hidden">
+        <div class="flex-1 overflow-y-auto p-6">
+          <div class="flex justify-end mb-4">
+            <button phx-click="new_channel" class="btn btn-primary btn-sm">New Channel</button>
           </div>
-        </:drawer_content>
-        <:drawer_side>
-          <.create_form :if={@channel_form && !@selected_channel} form={@channel_form} />
-          <.settings_panel
-            :if={@selected_channel}
-            channel={@selected_channel}
-            form={@channel_form}
-            users={available_users(@users, @selected_channel, @member_search)}
-            show_user_picker={@show_user_picker}
-            selected_member_ids={@selected_member_ids}
-            member_search={@member_search}
-            confirm_archive={@confirm_archive}
-            confirm_remove_member={@confirm_remove_member}
+
+          <.channel_table :if={@channels != []} channels={@channels} />
+          <.empty_state
+            :if={@channels == []}
+            icon="hero-hashtag"
+            title="No channels yet"
+            description="Create your first channel to get started."
           />
-        </:drawer_side>
-      </.drawer>
+        </div>
+
+        <.create_form :if={@channel_form && !@selected_channel} form={@channel_form} />
+        <.settings_panel
+          :if={@selected_channel}
+          channel={@selected_channel}
+          form={@channel_form}
+          users={available_users(@users, @selected_channel, @member_search)}
+          show_user_picker={@show_user_picker}
+          selected_member_ids={@selected_member_ids}
+          member_search={@member_search}
+          confirm_archive={@confirm_archive}
+          confirm_remove_member={@confirm_remove_member}
+        />
+      </div>
 
       <.archive_modal :if={@confirm_archive} channel={@selected_channel} />
       <.remove_member_modal
@@ -272,7 +265,7 @@ defmodule AstraplexWeb.Admin.ChannelListLive do
 
   defp create_form(assigns) do
     ~H"""
-    <div class="bg-base-100 min-h-full w-80 p-6">
+    <div class="w-80 border-l border-base-300 bg-base-100 overflow-y-auto p-6 shrink-0">
       <h3 class="text-lg font-bold mb-4">Create Channel</h3>
       <.form for={@form} phx-change="validate_channel" phx-submit="save_channel">
         <.form_input field={@form[:name]} label="Name" required />
@@ -288,7 +281,7 @@ defmodule AstraplexWeb.Admin.ChannelListLive do
 
   defp settings_panel(assigns) do
     ~H"""
-    <div class="bg-base-100 min-h-full w-96 p-6 flex flex-col gap-6">
+    <div class="w-96 border-l border-base-300 bg-base-100 overflow-y-auto p-6 flex flex-col gap-6 shrink-0">
       <div class="flex items-center justify-between">
         <h3 class="text-lg font-bold">Channel Settings</h3>
         <.link navigate={~p"/admin/channels"} class="btn btn-ghost btn-sm btn-circle">
