@@ -74,7 +74,7 @@ defmodule AstraplexWeb.Components.UI do
   def user_avatar(assigns) do
     ~H"""
     <div class={[
-      "avatar placeholder",
+      "avatar avatar-placeholder",
       @show_indicator && ((@online && "avatar-online") || "avatar-offline")
     ]}>
       <div class={[
