@@ -47,7 +47,7 @@ defmodule AstraplexWeb.AuthLiveTest do
     test "dashboard shows sign out link", %{conn: conn} do
       {:ok, _lv, html} = live(conn, ~p"/")
 
-      assert html =~ "Sign out"
+      assert html =~ "Sign Out"
       assert html =~ "/sign-out"
     end
 

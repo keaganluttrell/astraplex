@@ -9,15 +9,25 @@ defmodule AstraplexWeb.DashboardLive do
 
   def render(assigns) do
     ~H"""
-    <div class="p-8">
-      <h1 class="text-2xl font-bold">Welcome to Astraplex</h1>
-      <p class="mt-2 text-base-content/70">Logged in as {@current_user.email}</p>
-      <div class="mt-6">
-        <.link href={~p"/sign-out"} class="btn btn-outline btn-sm">
-          Sign out
-        </.link>
-      </div>
-    </div>
+    <%= if @current_user.role == :admin do %>
+      <Layouts.admin_shell flash={@flash} current_user={@current_user} active_page={:home}>
+        <.page_header title="Home" />
+        <.empty_state
+          icon="hero-chat-bubble-left-right"
+          title="Welcome to Astraplex"
+          description="Your conversations will appear here once channels are set up."
+        />
+      </Layouts.admin_shell>
+    <% else %>
+      <Layouts.staff_shell flash={@flash} current_user={@current_user} active_page={:home}>
+        <.page_header title="Home" />
+        <.empty_state
+          icon="hero-chat-bubble-left-right"
+          title="Welcome to Astraplex"
+          description="Your conversations will appear here once channels are set up."
+        />
+      </Layouts.staff_shell>
+    <% end %>
     """
   end
 end

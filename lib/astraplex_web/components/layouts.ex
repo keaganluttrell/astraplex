@@ -114,42 +114,6 @@ defmodule AstraplexWeb.Layouts do
   end
 
   @doc """
-  Temporary bridge layout that delegates to staff_shell.
-
-  This layout is set on live_sessions in the router. It receives `@inner_content`
-  (not `@inner_block`) because it is invoked as a layout, not a function component.
-  Plan 02 will update all LiveViews to call shell functions directly.
-  """
-  attr :flash, :map, required: true
-  attr :current_user, :map, default: nil
-
-  attr :current_scope, :map,
-    default: nil,
-    doc: "the current scope (kept for backward compatibility)"
-
-  def app(assigns) do
-    ~H"""
-    <%= cond do %>
-      <% is_map(@current_user) and Map.get(@current_user, :role) == :admin -> %>
-        <.admin_shell flash={@flash} current_user={@current_user}>
-          {@inner_content}
-        </.admin_shell>
-      <% is_map(@current_user) -> %>
-        <.staff_shell flash={@flash} current_user={@current_user}>
-          {@inner_content}
-        </.staff_shell>
-      <% true -> %>
-        <main class="px-4 py-20 sm:px-6 lg:px-8">
-          <div class="mx-auto max-w-2xl space-y-4">
-            {@inner_content}
-          </div>
-        </main>
-        <.flash_group flash={@flash} />
-    <% end %>
-    """
-  end
-
-  @doc """
   Provides dark vs light theme toggle based on themes defined in app.css.
 
   See <head> in root.html.heex which applies the theme before page load.

@@ -96,40 +96,43 @@ defmodule AstraplexWeb.Admin.UserListLive do
 
   def render(assigns) do
     ~H"""
-    <div class="p-8">
-      <div class="flex items-center justify-between mb-6">
-        <h1 class="text-2xl font-bold">User Management</h1>
-        <.link navigate={~p"/admin/users/new"} class="btn btn-primary btn-sm">New User</.link>
-      </div>
+    <Layouts.admin_shell flash={@flash} current_user={@current_user} active_page={:admin}>
+      <.page_header title="User Management">
+        <:actions>
+          <.link navigate={~p"/admin/users/new"} class="btn btn-primary btn-sm">New User</.link>
+        </:actions>
+      </.page_header>
 
-      <.table id="users" rows={@users} row_id={fn user -> "user-#{user.id}" end}>
-        <:col :let={user} label="Email">{user.email}</:col>
-        <:col :let={user} label="Role"><.role_badge role={user.role} /></:col>
-        <:col :let={user} label="Status"><.status_badge status={user.status} /></:col>
-        <:action :let={user}>
-          <div class="flex gap-2">
-            <button phx-click="change_role" phx-value-id={user.id} class="btn btn-ghost btn-xs">
-              Change Role
-            </button>
-            <button
-              :if={user.status == :active}
-              phx-click="confirm_deactivate"
-              phx-value-id={user.id}
-              class="btn btn-ghost btn-xs text-error"
-            >
-              Deactivate
-            </button>
-            <button
-              :if={user.status == :deactivated}
-              phx-click="reactivate"
-              phx-value-id={user.id}
-              class="btn btn-ghost btn-xs text-success"
-            >
-              Reactivate
-            </button>
-          </div>
-        </:action>
-      </.table>
+      <div class="p-6">
+        <.table id="users" rows={@users} row_id={fn user -> "user-#{user.id}" end}>
+          <:col :let={user} label="Email">{user.email}</:col>
+          <:col :let={user} label="Role"><.role_badge role={user.role} /></:col>
+          <:col :let={user} label="Status"><.status_badge status={user.status} /></:col>
+          <:action :let={user}>
+            <div class="flex gap-2">
+              <button phx-click="change_role" phx-value-id={user.id} class="btn btn-ghost btn-xs">
+                Change Role
+              </button>
+              <button
+                :if={user.status == :active}
+                phx-click="confirm_deactivate"
+                phx-value-id={user.id}
+                class="btn btn-ghost btn-xs text-error"
+              >
+                Deactivate
+              </button>
+              <button
+                :if={user.status == :deactivated}
+                phx-click="reactivate"
+                phx-value-id={user.id}
+                class="btn btn-ghost btn-xs text-success"
+              >
+                Reactivate
+              </button>
+            </div>
+          </:action>
+        </.table>
+      </div>
 
       <.deactivate_modal :if={@confirm_deactivate_user} user={@confirm_deactivate_user} />
 
@@ -161,7 +164,7 @@ defmodule AstraplexWeb.Admin.UserListLive do
           </div>
         </.form>
       </.modal>
-    </div>
+    </Layouts.admin_shell>
     """
   end
 

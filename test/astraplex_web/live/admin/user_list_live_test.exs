@@ -10,6 +10,20 @@ defmodule AstraplexWeb.Admin.UserListLiveTest do
   describe "admin user list" do
     setup :register_and_log_in_admin
 
+    test "renders inside admin shell with Astraplex branding", %{conn: conn} do
+      {:ok, _view, html} = live(conn, ~p"/admin/users")
+
+      assert html =~ "Astraplex"
+      assert html =~ "navbar"
+      assert html =~ "hero-shield-check"
+    end
+
+    test "shows User Management page header", %{conn: conn} do
+      {:ok, _view, html} = live(conn, ~p"/admin/users")
+
+      assert html =~ "User Management"
+    end
+
     test "shows user table with email, role, and status columns", %{conn: conn} do
       {:ok, _view, html} = live(conn, ~p"/admin/users")
 
