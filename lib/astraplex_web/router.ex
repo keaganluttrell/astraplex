@@ -47,6 +47,7 @@ defmodule AstraplexWeb.Router do
       live "/users", UserListLive, :index
       live "/users/new", UserListLive, :new
       live "/channels", ChannelListLive, :index
+      live "/channels/new", ChannelListLive, :new
       live "/channels/:id", ChannelListLive, :show
     end
   end

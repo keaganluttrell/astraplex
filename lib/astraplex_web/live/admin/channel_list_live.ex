@@ -35,6 +35,18 @@ defmodule AstraplexWeb.Admin.ChannelListLive do
     |> assign(:confirm_archive, false)
   end
 
+  defp apply_action(socket, :new, _params) do
+    form =
+      Channel
+      |> AshPhoenix.Form.for_create(:create, actor: socket.assigns.current_user, as: "channel")
+      |> to_form()
+
+    socket
+    |> assign(:page_title, "New Channel")
+    |> assign(:selected_channel, nil)
+    |> assign(:channel_form, form)
+  end
+
   defp apply_action(socket, :show, %{"id" => id}) do
     actor = socket.assigns.current_user
     channel = Ash.get!(Channel, id, actor: actor, load: [:members])
@@ -59,19 +71,6 @@ defmodule AstraplexWeb.Admin.ChannelListLive do
 
   def handle_event("new_channel_sidebar", _params, socket) do
     {:noreply, socket}
-  end
-
-  def handle_event("cancel_create", _params, socket) do
-    {:noreply, assign(socket, :channel_form, nil)}
-  end
-
-  def handle_event("new_channel", _params, socket) do
-    form =
-      Channel
-      |> AshPhoenix.Form.for_create(:create, actor: socket.assigns.current_user, as: "channel")
-      |> to_form()
-
-    {:noreply, assign(socket, :channel_form, form)}
   end
 
   def handle_event("validate_channel", %{"channel" => params}, socket) do
@@ -205,7 +204,7 @@ defmodule AstraplexWeb.Admin.ChannelListLive do
     >
       <div class="p-6">
         <div class="flex justify-end mb-4">
-          <button phx-click="new_channel" class="btn btn-primary btn-sm">New Channel</button>
+          <.link patch={~p"/admin/channels/new"} class="btn btn-primary btn-sm">New Channel</.link>
         </div>
 
         <.channel_table :if={@channels != []} channels={@channels} />
@@ -264,13 +263,13 @@ defmodule AstraplexWeb.Admin.ChannelListLive do
 
   defp create_modal(assigns) do
     ~H"""
-    <.modal id="create-channel-modal" show on_cancel={JS.push("cancel_create")}>
+    <.modal id="create-channel-modal" show on_cancel={JS.patch(~p"/admin/channels")}>
       <h3 class="text-lg font-bold mb-4">Create Channel</h3>
       <.form for={@form} phx-change="validate_channel" phx-submit="save_channel">
         <.form_input field={@form[:name]} label="Name" required />
         <.form_input field={@form[:description]} type="textarea" label="Description" />
         <div class="mt-4 flex justify-end gap-2">
-          <button type="button" phx-click="cancel_create" class="btn btn-ghost">Cancel</button>
+          <.link patch={~p"/admin/channels"} class="btn btn-ghost">Cancel</.link>
           <.button type="submit" color="primary">Create Channel</.button>
         </div>
       </.form>
