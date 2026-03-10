@@ -22,10 +22,9 @@ defmodule Astraplex.Messaging.ConversationTest do
       conversation =
         Ash.create!(
           Conversation,
-          %{},
+          %{member_ids: [staff2.id], body: "Hey there!"},
           action: :create_with_message,
-          actor: staff1,
-          arguments: %{member_ids: [staff2.id], body: "Hey there!"}
+          actor: staff1
         )
 
       assert conversation.id
@@ -57,10 +56,9 @@ defmodule Astraplex.Messaging.ConversationTest do
       conversation =
         Ash.create!(
           Conversation,
-          %{},
+          %{member_ids: [staff2.id], body: "DM message"},
           action: :create_with_message,
-          actor: staff1,
-          arguments: %{member_ids: [staff2.id], body: "DM message"}
+          actor: staff1
         )
 
       memberships = Ash.read!(ConversationMembership, actor: staff1)
@@ -79,10 +77,9 @@ defmodule Astraplex.Messaging.ConversationTest do
       conversation =
         Ash.create!(
           Conversation,
-          %{},
+          %{member_ids: [staff2.id, staff3.id], body: "Group message"},
           action: :create_with_message,
-          actor: staff1,
-          arguments: %{member_ids: [staff2.id, staff3.id], body: "Group message"}
+          actor: staff1
         )
 
       memberships = Ash.read!(ConversationMembership, actor: staff1)
@@ -101,19 +98,17 @@ defmodule Astraplex.Messaging.ConversationTest do
     } do
       Ash.create!(
         Conversation,
-        %{},
+        %{member_ids: [staff2.id], body: "First message"},
         action: :create_with_message,
-        actor: staff1,
-        arguments: %{member_ids: [staff2.id], body: "First message"}
+        actor: staff1
       )
 
       assert_raise Ash.Error.Invalid, fn ->
         Ash.create!(
           Conversation,
-          %{},
+          %{member_ids: [staff2.id], body: "Duplicate"},
           action: :create_with_message,
-          actor: staff1,
-          arguments: %{member_ids: [staff2.id], body: "Duplicate"}
+          actor: staff1
         )
       end
     end
@@ -124,19 +119,15 @@ defmodule Astraplex.Messaging.ConversationTest do
       conversation =
         Ash.create!(
           Conversation,
-          %{},
+          %{member_ids: [staff2.id], body: "Find me"},
           action: :create_with_message,
-          actor: staff1,
-          arguments: %{member_ids: [staff2.id], body: "Find me"}
+          actor: staff1
         )
 
       found =
-        Ash.read_one!(
-          Conversation,
-          action: :find_by_member_hash,
-          actor: staff1,
-          query: [filter: [member_hash: conversation.member_hash]]
-        )
+        Conversation
+        |> Ash.Query.for_read(:find_by_member_hash, %{member_hash: conversation.member_hash})
+        |> Ash.read_one!(actor: staff1)
 
       assert found.id == conversation.id
     end
@@ -150,19 +141,17 @@ defmodule Astraplex.Messaging.ConversationTest do
     } do
       Ash.create!(
         Conversation,
-        %{},
+        %{member_ids: [staff2.id], body: "Convo 1"},
         action: :create_with_message,
-        actor: staff1,
-        arguments: %{member_ids: [staff2.id], body: "Convo 1"}
+        actor: staff1
       )
 
       # staff3 creates a separate conversation with staff2 (staff1 NOT a member)
       Ash.create!(
         Conversation,
-        %{},
+        %{member_ids: [staff2.id], body: "Convo 2"},
         action: :create_with_message,
-        actor: staff3,
-        arguments: %{member_ids: [staff2.id], body: "Convo 2"}
+        actor: staff3
       )
 
       conversations =
@@ -179,10 +168,9 @@ defmodule Astraplex.Messaging.ConversationTest do
       convo1 =
         Ash.create!(
           Conversation,
-          %{},
+          %{member_ids: [staff2.id], body: "First convo"},
           action: :create_with_message,
-          actor: staff1,
-          arguments: %{member_ids: [staff2.id], body: "First convo"}
+          actor: staff1
         )
 
       Process.sleep(10)
@@ -190,10 +178,9 @@ defmodule Astraplex.Messaging.ConversationTest do
       convo2 =
         Ash.create!(
           Conversation,
-          %{},
+          %{member_ids: [staff3.id], body: "Second convo"},
           action: :create_with_message,
-          actor: staff1,
-          arguments: %{member_ids: [staff3.id], body: "Second convo"}
+          actor: staff1
         )
 
       conversations =

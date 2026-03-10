@@ -14,10 +14,9 @@ defmodule Astraplex.Messaging.ConversationAuthorizationTest do
     conversation =
       Ash.create!(
         Conversation,
-        %{},
+        %{member_ids: [staff2.id], body: "Private message"},
         action: :create_with_message,
-        actor: staff1,
-        arguments: %{member_ids: [staff2.id], body: "Private message"}
+        actor: staff1
       )
 
     %{
@@ -52,10 +51,9 @@ defmodule Astraplex.Messaging.ConversationAuthorizationTest do
       conversation =
         Ash.create!(
           Conversation,
-          %{},
+          %{member_ids: [staff2.id], body: "Hello"},
           action: :create_with_message,
-          actor: non_member,
-          arguments: %{member_ids: [staff2.id], body: "Hello"}
+          actor: non_member
         )
 
       assert conversation.id

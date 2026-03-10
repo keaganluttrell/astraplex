@@ -5,6 +5,8 @@ defmodule Astraplex.Messaging do
 
   resources do
     resource(Astraplex.Messaging.Channel)
+    resource(Astraplex.Messaging.Conversation)
+    resource(Astraplex.Messaging.ConversationMembership)
     resource(Astraplex.Messaging.Membership)
     resource(Astraplex.Messaging.Message)
   end

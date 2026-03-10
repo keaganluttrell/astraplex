@@ -24,6 +24,13 @@ defmodule Astraplex.Factory do
     attribute(:status, fn -> :active end)
   end
 
+  factory Astraplex.Messaging.Conversation do
+    attribute(:member_hash, fn -> "hash-#{System.unique_integer([:positive])}" end)
+  end
+
+  factory Astraplex.Messaging.ConversationMembership do
+  end
+
   factory Astraplex.Messaging.Membership do
   end
 
