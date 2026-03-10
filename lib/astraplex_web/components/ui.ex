@@ -82,7 +82,7 @@ defmodule AstraplexWeb.Components.UI do
         avatar_bg_color(@user.id),
         avatar_size(@size)
       ]}>
-        <span class={avatar_text_size(@size)}>
+        <span class={["leading-none", avatar_text_size(@size)]}>
           {initials(@user.email)}
         </span>
       </div>
@@ -120,6 +120,31 @@ defmodule AstraplexWeb.Components.UI do
       <div class="skeleton h-32 w-full rounded-lg"></div>
       <div class="skeleton h-4 w-3/4"></div>
       <div class="skeleton h-4 w-1/2"></div>
+    </div>
+    """
+  end
+
+  @doc """
+  Renders a breadcrumb navigation trail.
+
+  Accepts a list of `{label, url}` tuples. The last item should have `nil` as the URL
+  to indicate the current page (rendered as plain text, not a link).
+
+  ## Examples
+
+      <.breadcrumb path={[{"Astraplex", "/"}, {"Admin", "/admin/users"}, {"Users", nil}]} />
+  """
+  attr :path, :list, required: true
+
+  def breadcrumb(assigns) do
+    ~H"""
+    <div class="breadcrumbs text-sm">
+      <ul>
+        <li :for={{label, url} <- @path}>
+          <.link :if={url} navigate={url}>{label}</.link>
+          <span :if={!url}>{label}</span>
+        </li>
+      </ul>
     </div>
     """
   end

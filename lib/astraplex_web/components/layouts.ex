@@ -9,8 +9,8 @@ defmodule AstraplexWeb.Layouts do
 
       def render(assigns) do
         ~H\"\"\"
-        <Layouts.admin_shell flash={@flash} current_user={@current_user} active_page={:admin}>
-          <.page_header title="User Management" />
+        <Layouts.admin_shell flash={@flash} current_user={@current_user} active_page={:admin}
+          breadcrumb_path={[{"Astraplex", "/"}, {"Admin", "/admin/users"}, {"Users", nil}]}>
           <%-- page content --%>
         </Layouts.admin_shell>
         \"\"\"
@@ -30,11 +30,12 @@ defmodule AstraplexWeb.Layouts do
   attr :flash, :map, required: true
   attr :current_user, :map, required: true
   attr :active_page, :atom, default: nil
+  attr :breadcrumb_path, :list, default: []
   slot :inner_block, required: true
 
   def admin_shell(assigns) do
     ~H"""
-    <.base_shell flash={@flash} current_user={@current_user}>
+    <.base_shell flash={@flash} current_user={@current_user} breadcrumb_path={@breadcrumb_path}>
       <.app_sidebar
         current_user={@current_user}
         role={:admin}
@@ -58,11 +59,12 @@ defmodule AstraplexWeb.Layouts do
   attr :flash, :map, required: true
   attr :current_user, :map, required: true
   attr :active_page, :atom, default: nil
+  attr :breadcrumb_path, :list, default: []
   slot :inner_block, required: true
 
   def staff_shell(assigns) do
     ~H"""
-    <.base_shell flash={@flash} current_user={@current_user}>
+    <.base_shell flash={@flash} current_user={@current_user} breadcrumb_path={@breadcrumb_path}>
       <.app_sidebar
         current_user={@current_user}
         role={:staff}
@@ -154,11 +156,12 @@ defmodule AstraplexWeb.Layouts do
 
   attr :flash, :map, required: true
   attr :current_user, :map, required: true
+  attr :breadcrumb_path, :list, default: []
   slot :inner_block, required: true
 
   defp base_shell(assigns) do
     ~H"""
-    <.top_bar />
+    <.top_bar breadcrumb_path={@breadcrumb_path} />
     <div class="flex h-[calc(100vh-4rem)]">
       {render_slot(@inner_block)}
     </div>
@@ -166,11 +169,16 @@ defmodule AstraplexWeb.Layouts do
     """
   end
 
+  attr :breadcrumb_path, :list, default: []
+
   defp top_bar(assigns) do
     ~H"""
     <.navbar class="bg-base-100 border-b border-base-300 px-4 h-16 shrink-0">
       <:navbar_start>
-        <.link navigate={~p"/"} class="text-xl font-bold">Astraplex</.link>
+        <.breadcrumb :if={@breadcrumb_path != []} path={@breadcrumb_path} />
+        <.link :if={@breadcrumb_path == []} navigate={~p"/"} class="text-xl font-bold">
+          Astraplex
+        </.link>
       </:navbar_start>
       <:navbar_end>
         <input

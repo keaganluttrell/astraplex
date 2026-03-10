@@ -86,6 +86,48 @@ defmodule AstraplexWeb.Components.UITest do
     end
   end
 
+  describe "breadcrumb/1" do
+    test "renders all path segments" do
+      html =
+        render_ui(&UI.breadcrumb/1,
+          path: [{"Astraplex", "/"}, {"Admin", "/admin/users"}, {"Users", nil}]
+        )
+
+      assert html =~ "Astraplex"
+      assert html =~ "Admin"
+      assert html =~ "Users"
+    end
+
+    test "first and intermediate items are links" do
+      html =
+        render_ui(&UI.breadcrumb/1,
+          path: [{"Astraplex", "/"}, {"Admin", "/admin/users"}, {"Users", nil}]
+        )
+
+      assert html =~ ~s(href="/")
+      assert html =~ ~s(href="/admin/users")
+    end
+
+    test "last item is plain text, not a link" do
+      html =
+        render_ui(&UI.breadcrumb/1,
+          path: [{"Astraplex", "/"}, {"Users", nil}]
+        )
+
+      # "Users" should be in a span, not a link
+      assert html =~ "<span>Users</span>"
+    end
+
+    test "uses daisyUI breadcrumbs class" do
+      html =
+        render_ui(&UI.breadcrumb/1,
+          path: [{"Astraplex", "/"}, {"Home", nil}]
+        )
+
+      assert html =~ "breadcrumbs"
+    end
+  end
+
   describe "skeleton_list/1" do
     test "renders 5 skeleton rows" do
       html = render_ui(&UI.skeleton_list/1, %{})
