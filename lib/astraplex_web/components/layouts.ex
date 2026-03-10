@@ -31,6 +31,8 @@ defmodule AstraplexWeb.Layouts do
   attr :current_user, :map, required: true
   attr :active_page, :atom, default: nil
   attr :breadcrumb_path, :list, default: []
+  attr :channels, :list, default: []
+  attr :current_channel_id, :string, default: nil
   slot :inner_block, required: true
 
   def admin_shell(assigns) do
@@ -40,6 +42,8 @@ defmodule AstraplexWeb.Layouts do
         current_user={@current_user}
         role={:admin}
         active_page={@active_page}
+        channels={@channels}
+        current_channel_id={@current_channel_id}
         class="hidden md:flex"
       />
       <main class="flex-1 overflow-y-auto pb-16 md:pb-0">
@@ -60,6 +64,8 @@ defmodule AstraplexWeb.Layouts do
   attr :current_user, :map, required: true
   attr :active_page, :atom, default: nil
   attr :breadcrumb_path, :list, default: []
+  attr :channels, :list, default: []
+  attr :current_channel_id, :string, default: nil
   slot :inner_block, required: true
 
   def staff_shell(assigns) do
@@ -69,6 +75,8 @@ defmodule AstraplexWeb.Layouts do
         current_user={@current_user}
         role={:staff}
         active_page={@active_page}
+        channels={@channels}
+        current_channel_id={@current_channel_id}
         class="hidden md:flex"
       />
       <main class="flex-1 overflow-y-auto pb-16 md:pb-0">
@@ -96,6 +104,7 @@ defmodule AstraplexWeb.Layouts do
   """
   attr :title, :string, required: true
   attr :class, :string, default: ""
+  slot :title_action
   slot :input
   slot :inner_block, required: true
 
@@ -104,6 +113,9 @@ defmodule AstraplexWeb.Layouts do
     <div class={["flex flex-col h-full", @class]}>
       <div class="flex items-center px-4 py-3 border-b border-base-300 shrink-0">
         <h2 class="font-semibold">{@title}</h2>
+        <div :if={@title_action != []} class="ml-auto">
+          {render_slot(@title_action)}
+        </div>
       </div>
       <div class="flex-1 overflow-y-auto px-4 py-2">
         {render_slot(@inner_block)}
@@ -197,6 +209,8 @@ defmodule AstraplexWeb.Layouts do
   attr :current_user, :map, required: true
   attr :role, :atom, required: true, values: [:admin, :staff]
   attr :active_page, :atom, default: nil
+  attr :channels, :list, default: []
+  attr :current_channel_id, :string, default: nil
   attr :class, :string, default: ""
 
   defp app_sidebar(assigns) do
@@ -222,7 +236,18 @@ defmodule AstraplexWeb.Layouts do
       <div class="divider my-1 px-3"></div>
 
       <%!-- Collapsible messaging sections --%>
-      <.sidebar_group title="Channels" placeholder="(No channels yet)" />
+      <.sidebar_group
+        title="Channels"
+        placeholder="(No channels yet)"
+        items={@channels}
+        current_id={@current_channel_id}
+      >
+        <:add_button :if={@role == :admin}>
+          <button class="btn btn-ghost btn-xs" phx-click="new_channel_sidebar">
+            <.icon name="hero-plus" class="size-3" />
+          </button>
+        </:add_button>
+      </.sidebar_group>
       <.sidebar_group title="Direct Messages" placeholder="(No conversations yet)" />
       <.sidebar_group title="Groups" placeholder="(No groups yet)" />
 
@@ -261,20 +286,37 @@ defmodule AstraplexWeb.Layouts do
 
   attr :title, :string, required: true
   attr :placeholder, :string, required: true
+  attr :items, :list, default: []
+  attr :current_id, :string, default: nil
+  slot :add_button
 
   defp sidebar_group(assigns) do
     ~H"""
     <details open class="group px-2">
       <summary class="flex items-center justify-between px-3 py-2 cursor-pointer text-sm font-semibold text-base-content/70 hover:text-base-content list-none">
         {@title}
-        <.icon
-          name="hero-chevron-down-micro"
-          class="size-4 transition-transform group-open:rotate-180"
-        />
+        <span class="flex items-center gap-1">
+          {render_slot(@add_button)}
+          <.icon
+            name="hero-chevron-down-micro"
+            class="size-4 transition-transform group-open:rotate-180"
+          />
+        </span>
       </summary>
-      <ul class="menu menu-sm pl-2">
+      <ul :if={@items == []} class="menu menu-sm pl-2">
         <li class="disabled">
           <span class="text-base-content/40 text-xs">{@placeholder}</span>
+        </li>
+      </ul>
+      <ul :if={@items != []} class="menu menu-sm pl-2">
+        <li :for={item <- @items}>
+          <.link
+            navigate={item.url}
+            class={to_string(item.id) == to_string(@current_id) && "menu-active"}
+          >
+            {item.label}
+            <span class="badge badge-sm badge-primary hidden"></span>
+          </.link>
         </li>
       </ul>
     </details>
